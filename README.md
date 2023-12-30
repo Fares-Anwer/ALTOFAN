@@ -1,2 +1,2 @@
 # ALTOFAN
-website for tofan alaqsa
+website for Tofan Alaqsa
