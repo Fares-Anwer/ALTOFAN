@@ -5,6 +5,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 
 <head>
     <meta charset="utf-8">
@@ -28,6 +29,29 @@
     <!-- Page Content -->
     <div class="container-fluid">
         <div class="row" style="margin-top: 4%">
+=======
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>ALTOFAN</title>
+      <!-- Bootstrap core CSS -->
+      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="css/modern-business.css" rel="stylesheet">
+      <link rel="stylesheet" href="css/icons.css">
+      <link rel="stylesheet" href="css/owl.carousel.min.css">
+      <link rel="stylesheet" href="css/owl.theme.default.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+   </head>
+   <body>
+      <!-- Navigation -->
+      <?php include('includes/header.php');?>
+      <!-- Page Content -->
+      <div class="container-fluid">
+         <div class="row" style="margin-top: 4%">
+>>>>>>> a82733938efeb25a39f8829d7c1bcd08900c52b6
             <!-- Blog Entries Column -->
             <div class="col-md-2 mt-4">
                 <!-- Categories Widget -->
