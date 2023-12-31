@@ -12,7 +12,7 @@ include('includes/config.php');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>101 + News Station Portal | About us</title>
+    <title>ALHOFAN| About us</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -31,8 +31,10 @@ include('includes/config.php');
 
 <?php 
 $pagetype='aboutus';
-$query=mysqli_query($con,"select PageTitle,Description from tblpages where PageName='$pagetype'");
-while($row=mysqli_fetch_array($query))
+$stmt=$con->prepare("select PageTitle,Description from tblpages where PageName='$pagetype'"); 
+$stmt->execute(); 
+if ($stmt->rowCount()) {
+foreach ($stmt->fetchAll() as $row)
 {
 
 ?>
@@ -56,7 +58,7 @@ while($row=mysqli_fetch_array($query))
         </div>
       </div>
       <!-- /.row -->
-<?php } ?>
+<?php }} ?>
     
     </div>
     <!-- /.container -->

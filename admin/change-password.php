@@ -17,18 +17,31 @@ if(strlen($_SESSION['login'])==0){
 
         date_default_timezone_set('Asia/Kolkata');// change according timezone
         $currentTime = date( 'd-m-Y h:i:s A', time () );
-        $sql=mysqli_query($con,"SELECT AdminPassword FROM  tbladmin where AdminUserName='$adminid' || AdminEmailId='$adminid'");
-        $num=mysqli_fetch_array($sql);
-        if($num>0)
-        {
-            $dbpassword=$num['AdminPassword'];
+
+        $adminStmt = $con->prepare("SELECT AdminPassword FROM tbladmin WHERE AdminUserName = :adminid OR AdminEmailId = :adminid");
+        $adminStmt->bindParam(':adminid', $adminid);
+        $adminStmt->execute();
+    
+        // Fetch the admin password
+        $adminRow = $adminStmt->fetch();
+        if ($adminRow) {
+            $dbpassword = $adminRow['AdminPassword'];
+    
+            // Verify the password
             if (password_verify($password, $dbpassword)) {
-                $con=mysqli_query($con,"update tbladmin set AdminPassword='$newhashedpass', updationDate='$currentTime' where AdminUserName='$adminid'");
-                $msg="Password Changed Successfully !!";
+                // Prepare the statement to update the password
+                $updateStmt = $con->prepare("UPDATE tbladmin SET AdminPassword = :newhashedpass, updationDate = :currentTime WHERE AdminUserName = :adminid");
+                $updateStmt->bindParam(':newhashedpass', $newhashedpass);
+                $updateStmt->bindParam(':currentTime', $currentTime);
+                $updateStmt->bindParam(':adminid', $adminid);
+                $updateStmt->execute();
+    
+                $msg = "Password Changed Successfully !!";
+            } else {
+                $error = "Old Password not match !!";
             }
-        }
-        else{
-            $error="Old Password not match !!";
+        } else {
+            $error = "Invalid admin credentials";
         }
     }
 

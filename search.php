@@ -58,23 +58,28 @@ $st;
         }
         $no_of_records_per_page = 8;
         $offset = ($pageno-1) * $no_of_records_per_page;
+    // Prepare the query
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM tblposts");
+    $stmt->execute();
 
+    // Fetch the result
+    $total_rows = $stmt->fetchColumn();  // Fetch the first column directly
 
-        $total_pages_sql = "SELECT COUNT(*) FROM tblposts";
-        $result = mysqli_query($con,$total_pages_sql);
-        $total_rows = mysqli_fetch_array($result)[0];
-        $total_pages = ceil($total_rows / $no_of_records_per_page);
+    // Calculate the total pages
+    $total_pages = ceil($total_rows / $no_of_records_per_page);
 
+ 
 
-$query=mysqli_query($con,"select tblposts.id as pid,tblposts.PostTitle as posttitle,tblcategory.CategoryName as category,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url,tblposts.PostImage from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.PostTitle like '%$st%' and tblposts.Is_Active=1 LIMIT $offset, $no_of_records_per_page");
-
-$rowcount=mysqli_num_rows($query);
-if($rowcount==0)
+        $stmt=$con->prepare("select tblposts.id as pid,tblposts.PostTitle as posttitle,tblcategory.CategoryName as category,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url,tblposts.PostImage from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.PostTitle like '%$st%' and tblposts.Is_Active=1 LIMIT $offset, $no_of_records_per_page"); 
+        $stmt->execute(); 
+        $cnt=1;
+       if ($stmt->rowCount()==0)
 {
 echo "No record found";
 }
 else {
-while ($row=mysqli_fetch_array($query)) {
+  foreach ($stmt->fetchAll() as $row)
+  {
 
 
 ?>

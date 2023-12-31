@@ -12,7 +12,8 @@
    if($_GET['action']=='del' && $_GET['rid'])
    {
     $id=intval($_GET['rid']);
-    $query=mysqli_query($con,"delete from  tbladmin  where id='$id' && userType=0");
+    $stmt=$con->prepare("delete from  tbladmin  where id='$id' && userType=0");   
+    $stmt->execute();
    echo "<script>alert('Sub-admin details deleted.');</script>";
    echo "<script type='text/javascript'> document.location = 'manage-subadmins.php'; </script>";
    }
@@ -70,9 +71,11 @@
    
                                  <tbody>
                                     <?php 
-                                       $query=mysqli_query($con,"Select * from  tbladmin where userType=0");
-                                       $cnt=1;
-                                       while($row=mysqli_fetch_array($query))
+                                         $stmt=$con->prepare("Select id,CategoryName,Description,PostingDate,UpdationDate from  tblcategory where Is_Active=0"); 
+                                         $stmt->execute(); 
+                                          $cnt=1;
+                                          if ($stmt->rowCount()) {
+                                           foreach ($stmt->fetchAll() as $row)
                                        {
                                        ?>
                                     <tr>
@@ -87,7 +90,7 @@
                                     </tr>
                                     <?php
                                        $cnt++;
-                                        } ?>
+                                        }} ?>
                                  </tbody>
                               </table>
                            </div>

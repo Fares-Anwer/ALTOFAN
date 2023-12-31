@@ -12,8 +12,9 @@
    $catid=intval($_GET['cid']);
    $category=$_POST['category'];
    $description=$_POST['description'];
-   $query=mysqli_query($con,"Update  tblcategory set CategoryName='$category',Description='$description' where id='$catid'");
-   if($query)
+   $stmt=$con->prepare("Update  tblcategory set CategoryName='?',Description='?' where id='?'");   
+                        $stmt->execute(array($category,$description,$catid));  
+   if($stmt)
    {
    $msg="Category Updated successfully ";
    }
@@ -78,9 +79,12 @@
                            </div>
                            <?php 
                               $catid=intval($_GET['cid']);
-                              $query=mysqli_query($con,"Select id,CategoryName,Description,PostingDate,UpdationDate from  tblcategory where Is_Active=1 and id='$catid'");
-                              $cnt=1;
-                              while($row=mysqli_fetch_array($query))
+                              $stmt=$con->prepare("Select id,CategoryName,Description,PostingDate,UpdationDate from  tblcategory where Is_Active=1 and id='$catid'"); 
+$stmt->execute(); 
+$cnt=1;
+ if ($stmt->rowCount()) {
+     foreach ($stmt->fetchAll() as $row)
+                           
                               {
                               ?>
                                  <form class="row" name="category" method="post">
@@ -92,7 +96,7 @@
                                        <label class="control-label">Category Description</label>
                                           <textarea class="form-control" rows="5" name="description" required><?php echo htmlentities($row['Description']);?></textarea>
                                     </div>
-                                    <?php } ?>
+                                    <?php } }?>
                                     <div class="form-group col-md-12">
                                           <button type="submit" class="btn btn-custom waves-effect waves-light btn-md" name="submit">
                                           Update

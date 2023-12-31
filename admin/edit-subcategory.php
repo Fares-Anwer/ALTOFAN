@@ -13,8 +13,9 @@
    $categoryid=$_POST['category'];
    $subcatname=$_POST['subcategory'];
    $subcatdescription=$_POST['sucatdescription'];
-   $query=mysqli_query($con,"update tblsubcategory set CategoryId='$categoryid',Subcategory='$subcatname',SubCatDescription='$subcatdescription' where SubCategoryId='$subcatid'");
-   if($query)
+   $stmt=$con->prepare("update tblsubcategory set CategoryId='?',Subcategory='?',SubCatDescription='?' where SubCategoryId='?'");   
+   $stmt->execute(array($categoryid,$subcatname,$subcatdescription,$subcatid));  
+   if($stmt)
    {
    $msg="Sub-Category created ";
    }
@@ -79,9 +80,11 @@
                            <?php 
                               //fetching Category details
                               $subcatid=intval($_GET['scid']);
-                              $query=mysqli_query($con,"Select tblcategory.CategoryName as catname,tblcategory.id as catid,tblsubcategory.Subcategory as subcatname,tblsubcategory.SubCatDescription as SubCatDescription,tblsubcategory.PostingDate as subcatpostingdate,tblsubcategory.UpdationDate as subcatupdationdate,tblsubcategory.SubCategoryId as subcatid from tblsubcategory join tblcategory on tblsubcategory.CategoryId=tblcategory.id where tblsubcategory.Is_Active=1 and  SubCategoryId='$subcatid'");
-                              $cnt=1;
-                              while($row=mysqli_fetch_array($query))
+                              $stmt=$con->prepare("Select tblcategory.CategoryName as catname,tblcategory.id as catid,tblsubcategory.Subcategory as subcatname,tblsubcategory.SubCatDescription as SubCatDescription,tblsubcategory.PostingDate as subcatpostingdate,tblsubcategory.UpdationDate as subcatupdationdate,tblsubcategory.SubCategoryId as subcatid from tblsubcategory join tblcategory on tblsubcategory.CategoryId=tblcategory.id where tblsubcategory.Is_Active=1 and  SubCategoryId='$subcatid'"); 
+                              $stmt->execute(); 
+                            $cnt=1;
+                        if ($stmt->rowCount()) {
+                             foreach ($stmt->fetchAll() as $row)
                               {
                               
                               ?>
@@ -92,12 +95,14 @@
                                              <option value="<?php echo htmlentities($row['catid']);?>"><?php echo htmlentities($row['catname']);?></option>
                                              <?php
                                                 // Feching active categories
-                                                $ret=mysqli_query($con,"select id,CategoryName from  tblcategory where Is_Active=1");
-                                                while($result=mysqli_fetch_array($ret))
+                                                $stmt=$con->prepare("select id,CategoryName from  tblcategory where Is_Active=1"); 
+                                                $stmt->execute(); 
+                                          if ($stmt->rowCount()) {
+                                               foreach ($stmt->fetchAll() as $row)
                                                 {    
                                                 ?>
-                                             <option value="<?php echo htmlentities($result['id']);?>"><?php echo htmlentities($result['CategoryName']);?></option>
-                                             <?php } ?>
+                                             <option value="<?php echo htmlentities($row['id']);?>"><?php echo htmlentities($row['CategoryName']);?></option>
+                                             <?php } }?>
                                           </select>
                                     </div>
                                     <div class="form-group col-md-6">
@@ -108,7 +113,7 @@
                                        <label class="control-label">Sub-Category Description</label>
                                           <textarea class="form-control" rows="5" name="sucatdescription" required><?php echo htmlentities($row['SubCatDescription']);?></textarea>
                                     </div>
-                                    <?php } ?>                                                
+                                    <?php } }?>                                                
                                     <div class="form-group col-md-12">
                                           <button type="submit" class="btn btn-custom waves-effect waves-light btn-md" name="submitsubcat">
                                           Submit

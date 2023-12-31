@@ -14,8 +14,9 @@
    $email=$_POST['emailid'];
    $password=md5($_POST['pwd']);
    $usertype='0';
-   $query=mysqli_query($con,"insert into tbladmin(AdminUserName,AdminEmailId,AdminPassword,userType ) values('$username','$email','$password','$usertype')");
-   if($query){
+   $stmt=$con->prepare("insert into tbladmin(AdminUserName,AdminEmailId,AdminPassword,userType ) values('?','?','?','?')");
+   $stmt->execute(array($username,$email,$password,$usertype));  
+   if($stmt){
    echo "<script>alert('Sub-admin details added successfully.');</script>";
    echo "<script type='text/javascript'> document.location = 'add-subadmins; </script>";
    } else {

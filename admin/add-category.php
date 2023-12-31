@@ -13,8 +13,10 @@
    $category=$_POST['category'];
    $description=$_POST['description'];
    $status=1;
-   $query=mysqli_query($con,"insert into tblcategory(CategoryName,Description,Is_Active) values('$category','$description','$status')");
-   if($query)
+   $stmt=$con->prepare("insert into tblcategory(CategoryName,Description,Is_Active) values('?','?','?')");
+   $stmt->execute(array($category,$description,$status)); 
+   
+   if($stmt)
    {
    $msg="Category created ";
    }

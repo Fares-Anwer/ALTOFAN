@@ -11,8 +11,9 @@
    {
    $aid=intval($_GET['said']);
    $email=$_POST['emailid'];
-   $query=mysqli_query($con,"Update  tbladmin set AdminEmailId='$email'  where userType=0 && id='$aid'");
-   if($query)
+   $stmt=$con->prepare("Update  tbladmin set AdminEmailId='$email'  where userType=0 && id='$aid'");   
+   $stmt->execute(); 
+   if($stmt)
    {
    echo "<script>alert('Sub-admin details updated.');</script>";
    }
@@ -76,9 +77,11 @@
                            </div>
                            <?php 
                               $aid=intval($_GET['said']);
-                              $query=mysqli_query($con,"Select * from  tbladmin where userType=0 && id='$aid'");
-                              $cnt=1;
-                              while($row=mysqli_fetch_array($query))
+                              $stmt=$con->prepare("Select id,CategoryName,Description,PostingDate,UpdationDate from  tblcategory where Is_Active=1 and id='$catid'"); 
+                              $stmt->execute(); 
+                            $cnt=1;
+                        if ($stmt->rowCount()) {
+                             foreach ($stmt->fetchAll() as $row)
                               {
                               ?>
                            <div class="row">
@@ -101,7 +104,7 @@
                                     <label class="control-label">Updation date</label>
                                        <input type="text" class="form-control" value="<?php echo htmlentities($row['UpdationDate']);?>" name="udate" readonly>
                                  </div>
-                                 <?php } ?>
+                                 <?php } }?>
                                  <div class="form-group col-md-12">
                                        <button type="submit" class="btn btn-custom waves-effect waves-light btn-md" name="submit">
                                        Update

@@ -89,8 +89,9 @@
                             <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
                             <div class="wigdet-one-content">
                                 <p class="m-0 text-secondary" title="Statistics">Categories Listed</p>
-                                <?php $query=mysqli_query($con,"select * from tblcategory where Is_Active=1");
-                           $countcat=mysqli_num_rows($query);
+                                <?php  $stmt=$con->prepare("SELECT * FROM tblcategory WHERE Is_Active=1");
+                        $stmt->execute();   
+                        $countcat=$stmt->rowCount();  
                            ?>
                                 <h2><?php echo htmlentities($countcat);?> <small></small></h2>
                             </div>
@@ -104,8 +105,10 @@
                             <i class="mdi mdi-layers widget-one-icon"></i>
                             <div class="wigdet-one-content">
                                 <p class="m-0 text-secondary" title="User This Month">Live News</p>
-                                <?php $query=mysqli_query($con,"select * from tblposts where Is_Active=1");
-                           $countposts=mysqli_num_rows($query);
+                                <?php   $stmt=$con->prepare("SELECT * FROM tblcategory WHERE Is_Active=1");   
+                        $stmt->execute();   
+          
+                        $countposts=$stmt->rowCount();   
                            ?>
                                 <h2><?php echo htmlentities($countposts);?> <small></small></h2>
                             </div>
@@ -118,8 +121,9 @@
                             <i class="mdi mdi-layers widget-one-icon"></i>
                             <div class="wigdet-one-content">
                                 <p class="m-0 text-secondary" title="User This Month">Listed Subcategories</p>
-                                <?php $query=mysqli_query($con,"select * from tblsubcategory where Is_Active=1");
-                           $countsubcat=mysqli_num_rows($query);
+                                <?php $stmt=$con->prepare("SELECT * FROM tblsubcategory WHERE Is_Active=1");     
+                                 $stmt->execute();   
+                            $countsubcat=$stmt->rowCount();  
                            ?>
                                 <h2><?php echo htmlentities($countsubcat);?> <small></small></h2>
                             </div>
@@ -137,8 +141,9 @@
                      <i class="mdi mdi-layers widget-one-icon"></i>
                      <div class="wigdet-one-content">
                         <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">Trash News</p>
-                        <?php $query=mysqli_query($con,"select * from tblposts where Is_Active=0");
-                  $countposts=mysqli_num_rows($query);
+                        <?php  $stmt=$con->prepare("SELECT * FROM tblposts WHERE Is_Active=1");  
+                            $stmt->execute();              
+                            $countposts=$stmt->rowCount();  
                   ?>
                         <h2><?php echo htmlentities($countposts);?> <small></small></h2>
                      </div>
@@ -161,10 +166,13 @@
                             </thead>
                             <tbody>
                                 <?php
-                           $query=mysqli_query($con,"select tblposts.id as postid,tblposts.PostTitle as title,tblcategory.CategoryName as category,tblsubcategory.Subcategory as subcategory from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join tblsubcategory on tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=1 ");
-                           $rowcount=mysqli_num_rows($query);
-                           if($rowcount==0)
-                           {
+                           $stmt=$con->prepare("SELECT tblposts.id AS postid,tblposts.PostTitle AS title,tblcategory.CategoryName AS category,tblsubcategory.Subcategory AS subcategory FROM tblposts LEFT JOIN tblcategory ON tblcategory.id=tblposts.CategoryId left join tblsubcategory ON tblsubcategory.SubCategoryId=tblposts.SubCategoryId WHERE tblposts.Is_Active=1");                                      
+                           $stmt->execute();
+                           $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                           
+                         
+                            if($stmt==0)
+                            {
                            ?>
                                 <tr>
                                     <td colspan="4" align="center">
@@ -173,8 +181,8 @@
                                 <tr>
                                     <?php 
                               } else {
-                                 while($row=mysqli_fetch_array($query))
-                                 {
+                                foreach($result as $row){
+                                    {
                               ?>
                                 <tr>
                                     <td><?php echo htmlentities($row['title']);?></td>
@@ -182,7 +190,7 @@
                                     <td><?php echo htmlentities($row['subcategory'])?></td>
 
                                 </tr>
-                                <?php } }?>
+                                <?php } }}?>
                             </tbody>
                         </table>
                     </div>

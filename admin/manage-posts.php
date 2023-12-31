@@ -11,8 +11,9 @@
    if($_GET['action']='del')
    {
    $postid=intval($_GET['pid']);
-   $query=mysqli_query($con,"update tblposts set Is_Active=0 where id='$postid'");
-   if($query)
+   $stmt=$con->prepare("update tblposts set Is_Active=0 where id='$postid'");   
+   $stmt->execute();
+   if($stmt)
    {
    $msg="Post deleted ";
    }
@@ -67,9 +68,10 @@
                      </thead>
                      <tbody>
                         <?php
-                           $query=mysqli_query($con,"select tblposts.id as postid,tblposts.PostTitle as title,tblcategory.CategoryName as category,tblsubcategory.Subcategory as subcategory from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join tblsubcategory on tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=1 ");
-                           $rowcount=mysqli_num_rows($query);
-                           if($rowcount==0)
+                           $stmt=$con->prepare("select tblposts.id as postid,tblposts.PostTitle as title,tblcategory.CategoryName as category,tblsubcategory.Subcategory as subcategory from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join tblsubcategory on tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=1 "); 
+                           $stmt->execute(); 
+                            $cnt=1;
+                            if ($stmt->rowCount()==0)
                            {
                            ?>
                         <tr>
@@ -79,7 +81,8 @@
                         <tr>
                            <?php 
                               } else {
-                              while($row=mysqli_fetch_array($query))
+                                 foreach ($stmt->fetchAll() as $row)
+
                               {
                               ?>
                         <tr>

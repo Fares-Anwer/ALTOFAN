@@ -30,8 +30,10 @@
    
    
    $postid=intval($_GET['pid']);
-   $query=mysqli_query($con,"update tblposts set PostImage='$imgnewfile' where id='$postid'");
-   if($query)
+   $stmt=$con->prepare("update tblposts set PostImage='$imgnewfile' where id='$postid'");
+   $stmt->execute();  
+
+   if($stmt)
    {
    $msg="Post Feature Image updated ";
    }
@@ -109,8 +111,14 @@
       <form name="addpost" method="post" enctype="multipart/form-data">
          <?php
             $postid=intval($_GET['pid']);
-            $query=mysqli_query($con,"select PostImage,PostTitle from tblposts where id='$postid' and Is_Active=1 ");
-            while($row=mysqli_fetch_array($query))
+
+            $stmt=$con->prepare("select PostImage,PostTitle from tblposts where id='$postid' and Is_Active=1 "); 
+            $stmt->execute(); 
+             $cnt=1;
+             if ($stmt->rowCount()) {
+                 foreach ($stmt->fetchAll() as $row)
+
+
             {
             ?>
          <div class="row">
@@ -131,7 +139,7 @@
       </div>
       </div>
       </div>
-      <?php } ?>
+      <?php } }?>
       <div class="row">
       <div class="col-sm-12">
       <div class="card-box">

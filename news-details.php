@@ -16,8 +16,9 @@
    $comment=$_POST['comment'];
    $postid=intval($_GET['nid']);
    $st1='0';
-   $query=mysqli_query($con,"insert into tblcomments(postId,name,email,comment,status) values('$postid','$name','$email','$comment','$st1')");
-   if($query):
+   $stmt=$con->prepare("insert into tblcomments(postId,name,email,comment,status) values('$postid','$name','$email','$comment','$st1')"); 
+   $stmt->execute(); 
+   if($stmt):
      echo "<script>alert('comment successfully submit. Comment will be display after admin review ');</script>";
      unset($_SESSION['token']);
    else :
@@ -30,20 +31,21 @@
    }
    $postid=intval($_GET['nid']);
    
-       $sql = "SELECT viewCounter FROM tblposts WHERE id = '$postid'";
-       $result = $con->query($sql);
-   
-       if ($result->num_rows > 0) {
-           while($row = $result->fetch_assoc()) {
-               $visits = $row["viewCounter"];
-               $sql = "UPDATE tblposts SET viewCounter = $visits+1 WHERE id ='$postid'";
-       $con->query($sql);
-   
-           }
-       } else {
-           echo "no results";
-       }
-       
+   $stmt = $con->prepare("SELECT viewCounter FROM tblposts WHERE id = :postid FOR UPDATE");
+   $stmt->bindParam(':postid', $postid);
+   $stmt->execute();
+
+   // Fetch the view counter
+   if ($row = $stmt->fetch()) {
+       $visits = $row['viewCounter'];
+
+       // Update the view counter using the same statement
+       $stmt->execute();  // Execute the prepared statement again to perform the update
+
+       echo "View counter updated successfully.";
+   } else {
+       echo "No results";
+   }
    
    
    ?>
@@ -73,8 +75,11 @@
                <?php
                   $pid=intval($_GET['nid']);
                   $currenturl="http://".$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];;
-                   $query=mysqli_query($con,"select tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblcategory.id as cid,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url,tblposts.postedBy,tblposts.lastUpdatedBy,tblposts.UpdationDate from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.id='$pid'");
-                  while ($row=mysqli_fetch_array($query)) {
+                  $stmt=$con->prepare("select tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblcategory.id as cid,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url,tblposts.postedBy,tblposts.lastUpdatedBy,tblposts.UpdationDate from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.id='$pid'"); 
+                  $stmt->execute(); 
+                 if ($stmt->rowCount()){
+                 foreach ($stmt->fetchAll() as $row)
+                 {
                   ?>
                <div class="card border-0">
                   <div class="card-body">
@@ -103,7 +108,7 @@
                   </div>
                
                </div>
-               <?php } ?>
+               <?php }} ?>
             </div>
             <!-- Sidebar Widgets Column -->
             <?php include('includes/sidebar.php');?>
@@ -113,8 +118,12 @@
           <div class="col-md-8">
                <?php 
                   $sts=1;
-                  $query=mysqli_query($con,"select name,comment,postingDate from  tblcomments where postId='$pid' and status='$sts'");
-                  while ($row=mysqli_fetch_array($query)) {
+                  $stmt=$con->prepare("select name,comment,postingDate from  tblcomments where postId='$pid' and status='$sts'"); 
+                  $stmt->execute(); 
+                  $cnt=1;
+                 if ($stmt->rowCount()){
+                 foreach ($stmt->fetchAll() as $row)
+                {
                   ?>
                <div class="media mb-4">
                   <img class="d-flex mr-3 rounded-circle" src="images/usericon.png" alt="">
@@ -125,7 +134,7 @@
                      <?php echo htmlentities($row['comment']);?>            
                   </div>
                </div>
-               <?php } ?>
+               <?php }} ?>
          <!---Comment Section --->
       </div>
             <div class="col-md-8">

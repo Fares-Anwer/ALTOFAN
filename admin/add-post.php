@@ -36,8 +36,10 @@
    move_uploaded_file($_FILES["postimage"]["tmp_name"],"postimages/".$imgnewfile);
    
    $status=1;
-   $query=mysqli_query($con,"insert into tblposts(PostTitle,CategoryId,SubCategoryId,PostDetails,PostUrl,Is_Active,PostImage,postedBy) values('$posttitle','$catid','$subcatid','$postdetails','$url','$status','$imgnewfile','$postedby')");
-   if($query)
+   $stmt=$con->prepare("insert into tblposts(PostTitle,CategoryId,SubCategoryId,PostDetails,PostUrl,Is_Active,PostImage,postedBy) values('?','?','?','?','?','?','?','')");
+   $stmt->execute(array($posttitle,$catid,$subcatid,$postdetails,$url,$status,$imgnewfile,$postedby));  
+
+   if($stmt)
    {
    $msg="Post successfully added ";
    }
@@ -124,12 +126,15 @@
                                        <option value="">Select Category </option>
                                        <?php
                                           // Feching active categories
-                                          $ret=mysqli_query($con,"select id,CategoryName from  tblcategory where Is_Active=1");
-                                          while($result=mysqli_fetch_array($ret))
+                                          $stmt=$con->prepare("select id,CategoryName from  tblcategory where Is_Active=1"); 
+                                          $stmt->execute(); 
+                                           $cnt=1;
+                                           if ($stmt->rowCount()) {
+                                               foreach ($stmt->fetchAll() as $row)
                                           {    
                                           ?>
-                                       <option value="<?php echo htmlentities($result['id']);?>"><?php echo htmlentities($result['CategoryName']);?></option>
-                                       <?php } ?>
+                                       <option value="<?php echo htmlentities($row['id']);?>"><?php echo htmlentities($row['CategoryName']);?></option>
+                                       <?php } }?>
                                     </select>
                                  </div>
                                  <div class="form-group col-md-6">

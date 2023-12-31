@@ -11,8 +11,10 @@
    if($_GET['action']='restore')
    {
    $postid=intval($_GET['pid']);
-   $query=mysqli_query($con,"update tblposts set Is_Active=1 where id='$postid'");
-   if($query)
+   $stmt=$con->prepare("update tblposts set Is_Active=1 where id='$postid'");   
+   $stmt->execute();
+ 
+   if($stmt)
    {
    $msg="Post restored successfully ";
    }
@@ -28,7 +30,8 @@
    if($_GET['presid'])
    {
        $id=intval($_GET['presid']);
-       $query=mysqli_query($con,"delete from  tblposts  where id='$id'");
+       $stmt=$con->prepare("delete from  tblposts  where id='$id'"); 
+    $stmt->execute(); 
        $delmsg="Post deleted forever";
    }
    
@@ -85,10 +88,12 @@
                                  </thead>
                                  <tbody>
                                     <?php
-                                       $query=mysqli_query($con,"select tblposts.id as postid,tblposts.PostTitle as title,tblcategory.CategoryName as category,tblsubcategory.Subcategory as subcategory from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join tblsubcategory on tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=0");
-                                       $rowcount=mysqli_num_rows($query);
-                                       if($rowcount==0)
-                                       {
+                                     $stmt=$con->prepare("select tblposts.id as postid,tblposts.PostTitle as title,tblcategory.CategoryName as category,tblsubcategory.Subcategory as subcategory from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join tblsubcategory on tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=0"); 
+                                     $stmt->execute(); 
+                                     $cnt=1;
+                                    if ($stmt->rowCount()==0) {
+                                    
+                                       
                                        ?>
                                     <tr>
                                        <td colspan="4" align="center">
@@ -97,8 +102,8 @@
                                     <tr>
                                        <?php 
                                           } else {
-                                          while($row=mysqli_fetch_array($query))
-                                          {
+                                             foreach ($stmt->fetchAll() as $row)
+                                             {
                                           ?>
                                     <tr>
                                        <td><b><?php echo htmlentities($row['title']);?></b></td>

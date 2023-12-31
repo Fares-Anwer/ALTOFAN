@@ -9,10 +9,11 @@ if(isset($_POST['login']))
     $uname=$_POST['username'];
     $password=md5($_POST['password']);
     // Fetch data from database on the basis of username/email and password
-    $sql =mysqli_query($con,"SELECT AdminUserName,AdminEmailId,AdminPassword,userType FROM tbladmin WHERE (AdminUserName='$uname' && AdminPassword='$password')");
-    $num=mysqli_fetch_array($sql);
+    $stmt=$con->prepare('SELECT AdminUserName,AdminEmailId,AdminPassword,userType FROM tbladmin WHERE AdminUserName=? AND AdminPassword=?');
+    $stmt->execute(array( $uname, $password));
+    $conut=$stmt->rowCount();
 
-    if($num>0){
+    if($conut>0){
     $_SESSION['login']=$_POST['username'];
     $_SESSION['utype']=$num['userType'];
         echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";

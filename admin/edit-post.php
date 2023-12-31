@@ -18,8 +18,9 @@
    $url=implode("-",$arr);
    $status=1;
    $postid=intval($_GET['pid']);
-   $query=mysqli_query($con,"update tblposts set PostTitle='$posttitle',CategoryId='$catid',SubCategoryId='$subcatid',PostDetails='$postdetails',PostUrl='$url',Is_Active='$status',lastUpdatedBy='$lastuptdby' where id='$postid'");
-   if($query)
+   $stmt=$con->prepare("update tblposts set PostTitle='?',CategoryId='?',SubCategoryId='?',PostDetails='?',PostUrl='?',Is_Active='?',lastUpdatedBy='' where id='$postid'");   
+   $stmt->execute(array($posttitle,$catid,$subcatid,$postdetails,$url,$status,$lastuptdby));  
+   if($stmt)
    {
    $msg="Post updated ";
    }
@@ -92,8 +93,11 @@
                   </div>
                   <?php
                      $postid=intval($_GET['pid']);
-                     $query=mysqli_query($con,"select tblposts.id as postid,tblposts.PostImage,tblposts.PostTitle as title,tblposts.PostDetails,tblcategory.CategoryName as category,tblcategory.id as catid,tblsubcategory.SubCategoryId as subcatid,tblsubcategory.Subcategory as subcategory from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join tblsubcategory on tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.id='$postid' and tblposts.Is_Active=1 ");
-                     while($row=mysqli_fetch_array($query))
+                     $catid=intval($_GET['cid']);
+                     $stmt=$con->prepare("select tblposts.id as postid,tblposts.PostImage,tblposts.PostTitle as title,tblposts.PostDetails,tblcategory.CategoryName as category,tblcategory.id as catid,tblsubcategory.SubCategoryId as subcatid,tblsubcategory.Subcategory as subcategory from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join tblsubcategory on tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.id='$postid' and tblposts.Is_Active=1 "); 
+                    $stmt->execute() ; 
+                    if ($stmt->rowCount()) {
+                     foreach ($stmt->fetchAll() as $row)
                      {
                      ?>
                  
@@ -108,12 +112,16 @@
                                     <option value="<?php echo htmlentities($row['catid']);?>"><?php echo htmlentities($row['category']);?></option>
                                     <?php
                                        // Feching active categories
-                                       $ret=mysqli_query($con,"select id,CategoryName from  tblcategory where Is_Active=1");
-                                       while($result=mysqli_fetch_array($ret))
+
+                                       $stmt=$con->prepare("select id,CategoryName from  tblcategory where Is_Active=1"); 
+                                       $stmt->execute() ; 
+                                       if ($stmt->rowCount()) {
+                                        foreach ($stmt->fetchAll() as $row)
+                                        {
                                        {    
                                        ?>
-                                    <option value="<?php echo htmlentities($result['id']);?>"><?php echo htmlentities($result['CategoryName']);?></option>
-                                    <?php } ?>
+                                    <option value="<?php echo htmlentities($row['id']);?>"><?php echo htmlentities($row['CategoryName']);?></option>
+                                    <?php }}} ?>
                                  </select>
                               </div>
                               <div class="form-group col-md-6">
@@ -140,7 +148,7 @@
                                     </div>
                                  </div>
                               </div>
-                              <?php } ?>
+                              <?php } }?>
                               <button type="submit" name="update" class="btn btn-custom waves-effect waves-light btn-md">Update </button>
                            </div>
                         

@@ -10,23 +10,26 @@
    if($_GET['action']=='del' && $_GET['rid'])
    {
     $id=intval($_GET['rid']);
-    $query=mysqli_query($con,"update tblcategory set Is_Active='0' where id='$id'");
-    $msg="Category deleted ";
+    $stmt=$con->prepare("update tblcategory set Is_Active='0' where id='$id'"); 
+    $stmt->execute();   
+        $msg="Category deleted ";
    }
    // Code for restore
    if($_GET['resid'])
    {
     $id=intval($_GET['resid']);
-    $query=mysqli_query($con,"update tblcategory set Is_Active='1' where id='$id'");
-    $msg="Category restored successfully";
+    $stmt=$con->prepare("update tblcategory set Is_Active='1' where id='$id'"); 
+    $stmt->execute();
+        $msg="Category restored successfully";
    }
    
    // Code for Forever deletionparmdel
    if($_GET['action']=='parmdel' && $_GET['rid'])
    {
     $id=intval($_GET['rid']);
-    $query=mysqli_query($con,"delete from  tblcategory  where id='$id'");
-    $delmsg="Category deleted forever";
+    $stmt=$con->prepare("delete from  tblcategory  where id='$id'");
+    $stmt->execute();   
+        $delmsg="Category deleted forever";
    }
    
    ?>
@@ -98,9 +101,11 @@
                                  </thead>
                                  <tbody>
                                     <?php 
-                                       $query=mysqli_query($con,"Select id,CategoryName,Description,PostingDate,UpdationDate from  tblcategory where Is_Active=1");
-                                       $cnt=1;
-                                       while($row=mysqli_fetch_array($query))
+                                       $stmt=$con->prepare("Select id,CategoryName,Description,PostingDate,UpdationDate from  tblcategory where Is_Active=1"); 
+                                       $stmt->execute(); 
+                                        $cnt=1;
+                                        if ($stmt->rowCount()) {
+                                            foreach ($stmt->fetchAll() as $row)
                                        {
                                        ?>
                                     <tr>
@@ -115,7 +120,7 @@
                                     </tr>
                                     <?php
                                        $cnt++;
-                                        } ?>
+                                        } }?>
                                  </tbody>
                               </table>
                            </div>
@@ -143,9 +148,11 @@
                                  </thead>
                                  <tbody>
                                     <?php 
-                                       $query=mysqli_query($con,"Select id,CategoryName,Description,PostingDate,UpdationDate from  tblcategory where Is_Active=0");
-                                       $cnt=1;
-                                       while($row=mysqli_fetch_array($query))
+                                     $stmt=$con->prepare("Select id,CategoryName,Description,PostingDate,UpdationDate from  tblcategory where Is_Active=0"); 
+                                     $stmt->execute(); 
+                                      $cnt=1;
+                                      if ($stmt->rowCount()) {
+                                          foreach ($stmt->fetchAll() as $row)
                                        {
                                        ?>
                                     <tr>
@@ -160,7 +167,7 @@
                                     </tr>
                                     <?php
                                        $cnt++;
-                                        } ?>
+                                        } }?>
                                  </tbody>
                               </table>
                            </div>

@@ -3,8 +3,9 @@ require_once("includes/config.php");
 // code   username availablity
 if(!empty($_POST["username"])) {
 	$uname= $_POST["username"];
-	$query=mysqli_query($con,"select AdminuserName from tbladmin where AdminuserName='$uname'");		
-	$row=mysqli_num_rows($query);
+	$stmt=$con->prepare("select AdminuserName from tbladmin where AdminuserName='?'");
+	$stmt->execute(array($uname)); 
+	$row=$stmt->rowCount();
 	if($row>0){
 		echo "<span style='color:red'> Username already exists. Try with another username</span>";
 		echo "<script>$('#submit').prop('disabled',true);</script>";

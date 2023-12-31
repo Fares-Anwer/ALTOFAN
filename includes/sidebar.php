@@ -22,15 +22,18 @@
       <div class="card-body">
          <ul class="mb-0 list-unstyled">
             <?php
-               $query=mysqli_query($con,"select tblposts.id as pid,tblposts.PostImage,tblposts.PostTitle as posttitle from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId limit 8");
-               while ($row=mysqli_fetch_array($query)) {
+             $stmt=$con->prepare("select tblposts.id as pid,tblposts.PostImage,tblposts.PostTitle as posttitle from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId limit 8"); 
+             $stmt->execute(); 
+            if ($stmt->rowCount()){
+            foreach ($stmt->fetchAll() as $row)
+            {
                
                ?>
             <li class="d-flex mb-2 align-items-center">
                <img class="mr-2 rounded-circle" src="admin/postimages/<?php echo htmlentities($row['PostImage']);?>" alt="<?php echo htmlentities($row['posttitle']);?>" width="50px" height="50px">
                <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="text-dark font-weight-bold"><?php echo htmlentities($row['posttitle']);?></a>
             </li>
-            <?php } ?>
+            <?php } }?>
          </ul>
       </div>
    </div>
@@ -40,14 +43,17 @@
       <div class="card-body">
          <ul class="list-unstyled">
             <?php
-               $query1=mysqli_query($con,"select tblposts.id as pid,tblposts.PostTitle as posttitle from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId  order by viewCounter desc limit 5");
-               while ($result=mysqli_fetch_array($query1)) {
+              $stmt=$con->prepare("select tblposts.id as pid,tblposts.PostTitle as posttitle from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId  order by viewCounter desc limit 5"); 
+              $stmt->execute(); 
+             if ($stmt->rowCount()){
+             foreach ($stmt->fetchAll() as $row)
+             {
                
                ?>
             <li class="mb-2">
-               <a href="news-details.php?nid=<?php echo htmlentities($result['pid'])?>" class="text-dark font-weight-bold"><?php echo htmlentities($result['posttitle']);?></a>
+               <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="text-dark font-weight-bold"><?php echo htmlentities($row['posttitle']);?></a>
             </li>
-            <?php } ?>
+            <?php } }?>
          </ul>
       </div>
    </div>
@@ -57,15 +63,18 @@
       <div class="card-body">
          <ul class="mb-0 list-unstyled">
             <?php
-               $query=mysqli_query($con,"select tblposts.id as pid,tblposts.PostImage,tblposts.PostTitle as posttitle from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId limit 8");
-               while ($row=mysqli_fetch_array($query)) {
+               $stmt=$con->prepare("select tblposts.id as pid,tblposts.PostImage,tblposts.PostTitle as posttitle from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId limit 8"); 
+               $stmt->execute(); 
+              if ($stmt->rowCount()){
+              foreach ($stmt->fetchAll() as $row)
+             {
                
                ?>
             <li class="d-flex mb-2 align-items-center">
                <img class="mr-2 rounded" src="admin/postimages/<?php echo htmlentities($row['PostImage']);?>" alt="<?php echo htmlentities($row['posttitle']);?>" width="50px" height="50px">
                <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="text-dark font-weight-bold"><?php echo htmlentities($row['posttitle']);?></a>
             </li>
-            <?php } ?>
+            <?php }} ?>
          </ul>
       </div>
    </div>

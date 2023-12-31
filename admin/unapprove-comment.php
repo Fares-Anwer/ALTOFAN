@@ -10,14 +10,16 @@
    if( $_GET['disid'])
    {
     $id=intval($_GET['disid']);
-    $query=mysqli_query($con,"update tblcomments set status='0' where id='$id'");
+    $stmt=$con->prepare("update tblcomments set status='0' where id='$id'"); 
+    $stmt->execute(); 
     $msg="Comment unapprove ";
    }
    // Code for restore
    if($_GET['appid'])
    {
     $id=intval($_GET['appid']);
-    $query=mysqli_query($con,"update tblcomments set status='1' where id='$id'");
+    $stmt=$con->prepare("update tblcomments set status='1' where id='$id'"); 
+    $stmt->execute(); 
     $msg="Comment approved";
    }
    
@@ -25,7 +27,8 @@
    if($_GET['action']=='del' && $_GET['rid'])
    {
     $id=intval($_GET['rid']);
-    $query=mysqli_query($con,"delete from  tblcomments  where id='$id'");
+    $stmt=$con->prepare("delete from  tblcomments  where id='$id'"); 
+    $stmt->execute(); 
     $delmsg="Comment deleted forever";
    }
    
@@ -94,9 +97,11 @@
                                  </thead>
                                  <tbody>
                                     <?php 
-                                       $query=mysqli_query($con,"Select tblcomments.id,  tblcomments.name,tblcomments.email,tblcomments.postingDate,tblcomments.comment,tblposts.id as postid,tblposts.PostTitle from  tblcomments join tblposts on tblposts.id=tblcomments.postId where tblcomments.status=0");
-                                       $cnt=1;
-                                       while($row=mysqli_fetch_array($query))
+                                     $stmt=$con->prepare("Select tblcomments.id,  tblcomments.name,tblcomments.email,tblcomments.postingDate,tblcomments.comment,tblposts.id as postid,tblposts.PostTitle from  tblcomments join tblposts on tblposts.id=tblcomments.postId where tblcomments.status=0"); 
+                                     $stmt->execute(); 
+                                   $cnt=1;
+                               if ($stmt->rowCount()) {
+                                    foreach ($stmt->fetchAll() as $row)
                                        {
                                        ?>
                                     <tr>
@@ -124,7 +129,7 @@
                                     </tr>
                                     <?php
                                        $cnt++;
-                                        } ?>
+                                        } }?>
                                  </tbody>
                               </table>
                            </div>

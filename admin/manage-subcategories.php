@@ -10,14 +10,16 @@
    if($_GET['action']=='del' && $_GET['scid'])
    {
     $id=intval($_GET['scid']);
-    $query=mysqli_query($con,"update  tblsubcategory set Is_Active='0' where SubCategoryId='$id'");
+    $stmt=$con->prepare("update  tblsubcategory set Is_Active='0' where SubCategoryId='$id'"); 
+    $stmt->execute();   
     $msg="Category deleted ";
    }
    // Code for restore
    if($_GET['resid'])
    {
     $id=intval($_GET['resid']);
-    $query=mysqli_query($con,"update  tblsubcategory set Is_Active='1' where SubCategoryId='$id'");
+    $stmt=$con->prepare("update  tblsubcategory set Is_Active='1' where SubCategoryId='$id'"); 
+    $stmt->execute();   
     $msg="Category restored successfully";
    }
    
@@ -25,7 +27,8 @@
    if($_GET['action']=='perdel' && $_GET['scid'])
    {
     $id=intval($_GET['scid']);
-    $query=mysqli_query($con,"delete from   tblsubcategory  where SubCategoryId='$id'");
+    $stmt=$con->prepare("delete from   tblsubcategory  where SubCategoryId='$id'"); 
+    $stmt->execute();   
     $delmsg="Category deleted forever";
    }
    
@@ -98,11 +101,12 @@
                                  </thead>
                                  <tbody>
                                     <?php 
-                                       $query=mysqli_query($con,"Select tblcategory.CategoryName as catname,tblsubcategory.Subcategory as subcatname,tblsubcategory.SubCatDescription as SubCatDescription,tblsubcategory.PostingDate as subcatpostingdate,tblsubcategory.UpdationDate as subcatupdationdate,tblsubcategory.SubCategoryId as subcatid from tblsubcategory join tblcategory on tblsubcategory.CategoryId=tblcategory.id where tblsubcategory.Is_Active=1");
-                                       $cnt=1;
-                                       $rowcount=mysqli_num_rows($query);
-                                       if($rowcount==0)
-                                       {
+                                      $stmt=$con->prepare("Select tblcategory.CategoryName as catname,tblsubcategory.Subcategory as subcatname,tblsubcategory.SubCatDescription as SubCatDescription,tblsubcategory.PostingDate as subcatpostingdate,tblsubcategory.UpdationDate as subcatupdationdate,tblsubcategory.SubCategoryId as subcatid from tblsubcategory join tblcategory on tblsubcategory.CategoryId=tblcategory.id where tblsubcategory.Is_Active=1"); 
+                                      $stmt->execute(); 
+                                      $cnt=1;
+                                     if ($stmt->rowCount()==0) {
+                                     foreach ($stmt->fetchAll() as $row){
+                                       
                                        ?>
                                     <tr>
                                        <td colspan="7" align="center">
@@ -110,10 +114,10 @@
                                        </td>
                                     <tr>
                                        <?php 
-                                          } else {
+                                          }} else {
                                           
-                                          while($row=mysqli_fetch_array($query))
-                                          {
+                                             foreach ($stmt->fetchAll() as $row)
+                                             {
                                           ?>
                                     <tr>
                                        <th scope="row"><?php echo htmlentities($cnt);?></th>
@@ -157,21 +161,22 @@
                                  </thead>
                                  <tbody>
                                     <?php 
-                                       $query=mysqli_query($con,"Select tblcategory.CategoryName as catname,tblsubcategory.Subcategory as subcatname,tblsubcategory.SubCatDescription as SubCatDescription,tblsubcategory.PostingDate as subcatpostingdate,tblsubcategory.UpdationDate as subcatupdationdate,tblsubcategory.SubCategoryId as subcatid from tblsubcategory join tblcategory on tblsubcategory.CategoryId=tblcategory.id where tblsubcategory.Is_Active=0");
+                                       $stmt=$con->prepare("Select tblcategory.CategoryName as catname,tblsubcategory.Subcategory as subcatname,tblsubcategory.SubCatDescription as SubCatDescription,tblsubcategory.PostingDate as subcatpostingdate,tblsubcategory.UpdationDate as subcatupdationdate,tblsubcategory.SubCategoryId as subcatid from tblsubcategory join tblcategory on tblsubcategory.CategoryId=tblcategory.id where tblsubcategory.Is_Active=0"); 
+                                       $stmt->execute(); 
                                        $cnt=1;
-                                       $rowcount=mysqli_num_rows($query);
-                                       if($rowcount==0)
-                                       {
-                                       ?>
+                                      if ($stmt->rowCount()==0) {
+                                      {
+                                    
+                                    ?>
                                     <tr>
                                        <td colspan="7" align="center">
                                           <h3 style="color:red">No record found</h3>
                                        </td>
                                     <tr>
                                        <?php 
-                                          } else {
+                                         } } else {
                                           
-                                          while($row=mysqli_fetch_array($query))
+                                          foreach ($stmt->fetchAll() as $row)
                                           {
                                           ?>
                                     <tr>

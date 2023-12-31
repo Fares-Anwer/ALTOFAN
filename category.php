@@ -15,7 +15,7 @@ include('includes/config.php');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>101 + News Station Portal | Category  Page</title>
+    <title>ALHOFAN</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -44,14 +44,17 @@ include('includes/config.php');
                      <div class="row">
                         <div class="col-lg-12">
                            <ul class="list-unstyled mb-0">
-                              <?php $query=mysqli_query($con,"select id,CategoryName from tblcategory");
-                                 while($row=mysqli_fetch_array($query))
+                              <?php 
+                              $stmt=$con->prepare("select id,CategoryName from tblcategory"); 
+                              $stmt->execute(); 
+                              if ($stmt->rowCount()) {
+                              foreach ($stmt->fetchAll() as $row)
                                  {
                                  ?>
                               <li class=" mb-2">
                                  <a href="category.php?catid=<?php echo htmlentities($row['id'])?>" class="text-secondary"><?php echo htmlentities($row['CategoryName']);?></a>
                               </li>
-                              <?php } ?>
+                              <?php }} ?>
                            </ul>
                         </div>
                      </div>
@@ -83,20 +86,20 @@ $_SESSION['catid']=intval($_GET['catid']);
 
 
         $total_pages_sql = "SELECT COUNT(*) FROM tblposts";
-        $result = mysqli_query($con,$total_pages_sql);
-        $total_rows = mysqli_fetch_array($result)[0];
+        $result=$con->prepare($total_pages_sql); 
+        $total_rows = $result->rowCount(); 
         $total_pages = ceil($total_rows / $no_of_records_per_page);
 
 
-$query=mysqli_query($con,"select tblposts.id as pid,tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.CategoryId='".$_SESSION['catid']."' and tblposts.Is_Active=1 order by tblposts.id desc LIMIT $offset, $no_of_records_per_page");
-
-$rowcount=mysqli_num_rows($query);
-if($rowcount==0)
+        $stmt=$con->prepare("select tblposts.id as pid,tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.CategoryId='".$_SESSION['catid']."' and tblposts.Is_Active=1 order by tblposts.id desc LIMIT $offset, $no_of_records_per_page"); 
+        $stmt->execute(); 
+        if ($stmt->rowCount()) {
 {
 echo "No record found";
-}
+}}
 else {
-while ($row=mysqli_fetch_array($query)) {
+   foreach ($stmt->fetchAll() as $row)
+   {
 
 
 ?>

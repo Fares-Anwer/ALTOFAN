@@ -13,8 +13,9 @@ $pagetype='contactus';
 $pagetitle=$_POST['pagetitle'];
 $pagedetails=$_POST['pagedescription'];
 
-$query=mysqli_query($con,"update tblpages set PageTitle='$pagetitle',Description='$pagedetails' where PageName='$pagetype' ");
-if($query)
+$stmt=$con->prepare("update tblpages set PageTitle='?',Description='?' where PageName='?' "); 
+$stmt->execute(array( $pagetitle,$pagedetails,$pagetype)); 
+if($stmt)
 {
 $msg="About us  page successfully updated ";
 }
@@ -81,8 +82,11 @@ $error="Something went wrong . Please try again.";
 </div>
 <?php 
 $pagetype='contactus';
-$query=mysqli_query($con,"select PageTitle,Description from tblpages where PageName='$pagetype'");
-while($row=mysqli_fetch_array($query))
+$stmt=$con->prepare("select PageTitle,Description from tblpages where PageName='?'"); 
+$stmt->execute(array($pagetype)); 
+ $cnt=1;
+ if ($stmt->rowCount()) {
+     foreach ($stmt->fetchAll() as $row)
 {
 
 ?>
@@ -111,7 +115,7 @@ while($row=mysqli_fetch_array($query))
 </div>
 </div>
 </div>
-<?php } ?>
+<?php } }?>
 
 <button type="submit" name="update" class="btn btn-custom waves-effect waves-light btn-md">Update and Post</button>
 

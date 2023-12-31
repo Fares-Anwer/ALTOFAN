@@ -13,8 +13,9 @@
    $subcatname=$_POST['subcategory'];
    $subcatdescription=$_POST['sucatdescription'];
    $status=1;
-   $query=mysqli_query($con,"insert into tblsubcategory(CategoryId,Subcategory,SubCatDescription,Is_Active) values('$categoryid','$subcatname','$subcatdescription','$status')");
-   if($query)
+   $stmt=$con->prepare("insert into tblsubcategory(CategoryId,Subcategory,SubCatDescription,Is_Active) values('?','?','?','?')");
+   $stmt->execute(array($categoryid,$subcatname,$subcatdescription,$status)); 
+   if($stmt)
    {
    $msg="Sub-Category created ";
    }
@@ -82,12 +83,16 @@
                                              <option value="">Select Category </option>
                                              <?php
                                                 // Feching active categories
-                                                $ret=mysqli_query($con,"select id,CategoryName from  tblcategory where Is_Active=1");
-                                                while($result=mysqli_fetch_array($ret))
+                                                $stmt=$con->prepare("select id,CategoryName from  tblcategory where Is_Active=1"); 
+                                                $stmt->execute(); 
+                                                 $cnt=1;
+                                                 if ($stmt->rowCount()) {
+                                                     foreach ($stmt->fetchAll() as $row)
+
                                                 {    
                                                 ?>
-                                             <option value="<?php echo htmlentities($result['id']);?>"><?php echo htmlentities($result['CategoryName']);?></option>
-                                             <?php } ?>
+                                             <option value="<?php echo htmlentities($row['id']);?>"><?php echo htmlentities($row['CategoryName']);?></option>
+                                             <?php }} ?>
                                           </select>
                                     </div>
                                     <div class="form-group col-md-6">
