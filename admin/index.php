@@ -58,7 +58,7 @@ if(isset($_POST['login']))
         <div class="container m-t-50">
             <div class="row align-items-center m-t-50">
                 <div class="col-md-8 text-center">
-                    <img src="assets/images/blog-reading.png" width="auto">
+                    <img src="assets/images/backgr.jpg" width="auto">
                 </div>
                 <div class="col-md-4 ">
 
@@ -68,7 +68,7 @@ if(isset($_POST['login']))
                             <div class="account-logo-box">
                                 <h2 class="text-uppercase">
                                     <a href="index.php" class="text-success">
-                                        <span><img src="assets/images/logo.png" alt="" width="350px"></span>
+                                        <span><img src="assets/images/.jpg" alt="" width="350px"></span>
                                     </a>
                                 </h2>
                                 <p>Please sign-in to your account and start the adventure</p>

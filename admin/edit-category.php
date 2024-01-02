@@ -80,7 +80,7 @@
                            <?php 
                               $catid=intval($_GET['cid']);
                               $stmt=$con->prepare("Select id,CategoryName,Description,PostingDate,UpdationDate from  tblcategory where Is_Active=1 and id='$catid'"); 
-$stmt->execute(); 
+$stmt->execute();
 $cnt=1;
  if ($stmt->rowCount()) {
      foreach ($stmt->fetchAll() as $row)
