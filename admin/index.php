@@ -3,24 +3,22 @@ session_start();
 //Database Configuration File
 include('includes/config.php');
 //error_reporting(0);
-if(isset($_POST['login']))
-{
+if (isset($_POST['login'])) {
     // Getting username/ email and password
-    $uname=$_POST['username'];
-    $password=md5($_POST['password']);
+    $uname = $_POST['username'];
+    $password = md5($_POST['password']);
     // Fetch data from database on the basis of username/email and password
     $stmt=$con->prepare('SELECT AdminUserName,AdminEmailId,AdminPassword,userType FROM tbladmin WHERE AdminUserName=? AND AdminPassword=?');
     $stmt->execute(array( $uname, $password));
     $conut=$stmt->rowCount();
 
-    if($conut>0){
+    if($num>0){
     $_SESSION['login']=$_POST['username'];
     $_SESSION['utype']=$num['userType'];
         echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
-    }else{
+    } else {
         echo "<script>alert('Invalid Details');</script>";
     }
-
 }
 ?>
 
@@ -30,12 +28,12 @@ if(isset($_POST['login']))
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="101 + News Station Portal.">
+    <meta name="description" content="News about Tofan Al-Aqsa.">
     <meta name="author" content="xyz">
 
 
     <!-- App title -->
-    <title>101 + News Station Portal | Admin Panel</title>
+    <title>ALTOFAN Admin</title>
 
     <!-- App css -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
