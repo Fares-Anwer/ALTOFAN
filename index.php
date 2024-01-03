@@ -37,14 +37,19 @@ include('includes/config.php');
                      <div class="row">
                         <div class="col-lg-12">
                            <ul class="list-unstyled mb-0">
-                              <?php $query=mysqli_query($con,"select id,CategoryName from tblcategory");
-                                 while($row=mysqli_fetch_array($query))
+                              <?php
+                                          $stmt=$con->prepare("select id,CategoryName from tblcategory"); 
+                                          $stmt->execute(); 
+                                           $cnt=1;
+                                           if ($stmt->rowCount()) {
+                                            foreach ($stmt->fetchAll() as $row)
+                              
                                  {
                                  ?>
                               <li class=" mb-2">
                                  <a href="category.php?catid=<?php echo htmlentities($row['id'])?>" class="text-secondary"><?php echo htmlentities($row['CategoryName']);?></a>
                               </li>
-                              <?php } ?>
+                              <?php }} ?>
                            </ul>
                         </div>
                      </div>
@@ -114,15 +119,21 @@ include('includes/config.php');
                         $no_of_records_per_page = 8;
                         $offset = ($pageno-1) * $no_of_records_per_page;
                      
-                     
-                        $total_pages_sql = "SELECT COUNT(*) FROM tblposts";
-                        $result = mysqli_query($con,$total_pages_sql);
-                        $total_rows = mysqli_fetch_array($result)[0];
-                        $total_pages = ceil($total_rows / $no_of_records_per_page);
-                     
-                     
-                     $query=mysqli_query($con,"select tblposts.id as pid,tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblcategory.id as cid,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=1 order by tblposts.id desc  LIMIT $offset, $no_of_records_per_page");
-                     while ($row=mysqli_fetch_array($query)) {
+                    
+
+$total_pages_sql = "SELECT COUNT(*) FROM tblposts";
+$stmt = $con->prepare($total_pages_sql);
+$stmt->execute();
+$total_rows = $stmt->fetchColumn();
+$total_pages = ceil($total_rows / $no_of_records_per_page);
+
+
+$stmt=$con->prepare("select tblposts.id as pid,tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblcategory.id as cid,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=1 order by tblposts.id desc  LIMIT $offset, $no_of_records_per_page"); 
+$stmt->execute(); 
+ $cnt=1;
+ if ($stmt->rowCount()) {
+  foreach ($stmt->fetchAll() as $row)
+                     {
                      ?>
                   <div class="col-md-6">
                      <div class="card mb-4 border-0">
@@ -142,7 +153,7 @@ include('includes/config.php');
                         </div>
                      </div>
                   </div>
-                  <?php } ?>
+                  <?php } }?>
                   <div class="col-md-12"><a href = "mailto: Nowdemy@gmail.com">
                      <img src="images/ads.jpg" class="img-fluid"></a>
                      <!-- Pagination -->

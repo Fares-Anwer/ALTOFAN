@@ -54,8 +54,8 @@
                
                ?>
             <li class="mb-2">
-                <a href="news-details.php?nid=<?php echo htmlentities($result['pid'])?>"
-                    class="text-dark font-weight-bold"><?php echo htmlentities($result['posttitle']);?></a>
+                <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>"
+                    class="text-dark font-weight-bold"><?php echo htmlentities($row['posttitle']);?></a>
             </li>
             <?php } }?>
         </ul>

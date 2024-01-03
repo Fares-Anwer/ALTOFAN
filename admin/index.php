@@ -12,7 +12,7 @@ if (isset($_POST['login'])) {
     $stmt->execute(array( $uname, $password));
     $conut=$stmt->rowCount();
 
-    if($num>0){
+    if($conut>0){
     $_SESSION['login']=$_POST['username'];
     $_SESSION['utype']=$num['userType'];
         echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
