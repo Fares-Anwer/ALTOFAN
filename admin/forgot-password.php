@@ -8,13 +8,13 @@ if(isset($_POST['submit']))
     $username=$_POST['username'];
     $email=$_POST['email'];
 $password=md5($_POST['newpassword']);
-                            $stmt=$con->prepare("select id from tbladmin where  AdminEmailId='?' and AdminUserName='?' "); 
-                              $stmt->execute(array($email,$username)); 
+                            $stmt=$con->prepare("select id from tbladmin where  AdminEmailId='$email' and AdminUserName='$username' "); 
+                              $stmt->execute(); 
 
                              $ret= $stmt->rowCount();   
     if($ret>0){
         $stmt1=$con->prepare("update tbladmin set AdminPassword='$password'  where  AdminEmailId='$email' && AdminUserName='$username' "); 
-                              $stmt->execute(); 
+                              $stmt1->execute(); 
        if($stmt1)
    {
 echo "<script>alert('Password successfully changed');</script>";
