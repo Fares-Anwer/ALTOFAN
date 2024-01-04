@@ -12,9 +12,9 @@ if (isset($_POST['login'])) {
     $stmt->bindParam(':uname', $uname);
     $stmt->bindParam(':password', $password);
     $stmt->execute();
-    $conut = $stmt->fetch(PDO::FETCH_ASSOC);
+    $count = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($conut) {
+    if ($count > 0) {
         $_SESSION['login'] = $_POST['username'];
         $_SESSION['utype'] = $count['userType'];
         echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
