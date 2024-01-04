@@ -44,19 +44,19 @@
                 <div class="col-md-4">
                     <div class="card-box h-100">
                         <div class="card-header">
-                            <h2 class="card-title mb-2">Welcome Mayuri K.</h2>
-                            <span class="d-block mb-4 text-nowrap">Freelancer from India</span>
+                            <h2 class="card-title mb-2">Welcome TOFAN</h2>
+                            <span class="d-block mb-4 text-nowrap">Gaza</span>
                         </div>
                         <br><br>
 
                         <div class="card-body">
                             <div class="row ">
                                 <div class="col-md-6">
-                                    <h1 class="display-6 text-primary mb-2 pt-4 pb-1">7+ Years of Exprience</h1>
-                                    <small class="d-block mb-3">In <br>PHP, PDO, Python, Laravel</small>
+                                    <h1 class="display-6 text-primary mb-2 pt-4 pb-1"> We are Gaza</h1>
+                                    <small class="d-block mb-3">In <br></small>
                                     <br>
                                     <br>
-                                    <a href="https://www.mayurik.com/#download_section" target="a_blank"
+                                    <a href="https://www.facebook.com/profile.php?id=100013402905912&locale=ar_AR" target="a_blank"
                                         class="btn btn-sm btn-primary">Visit Website</a>
                                 </div>
                                 <div class="col-md-6">
