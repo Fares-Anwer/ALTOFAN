@@ -14,9 +14,9 @@ if (isset($_POST['login'])) {
     $stmt->execute();
     $conut = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if($conut>0){
-    $_SESSION['login']=$_POST['username'];
-    $_SESSION['utype']=$_POST['userType'];
+    if ($conut > 0) {
+        $_SESSION['login'] = $_POST['username'];
+        $_SESSION['utype'] = $conut['userType'];
         echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
     } else {
         echo "<script>alert('Invalid Details');</script>";
@@ -78,18 +78,15 @@ if (isset($_POST['login'])) {
                                 <form class="form-horizontal" method="post">
                                     <div class="form-group ">
                                         <div class="col-xs-12">
-                                            <input class="form-control" type="text" required="" name="username"
-                                                placeholder="Username or email" autocomplete="off">
+                                            <input class="form-control" type="text" required="" name="username" placeholder="Username or email" autocomplete="off">
                                         </div>
                                     </div>
-                                    <div class="text-right mb-2"><a href="forgot-password.php"><i
-                                                class="mdi mdi-lock"></i> Forgot your password?</a></div>
+                                    <div class="text-right mb-2"><a href="forgot-password.php"><i class="mdi mdi-lock"></i> Forgot your password?</a></div>
 
 
                                     <div class="form-group">
                                         <div class="col-xs-12">
-                                            <input class="form-control" type="password" name="password" required=""
-                                                placeholder="Password" autocomplete="off">
+                                            <input class="form-control" type="password" name="password" required="" placeholder="Password" autocomplete="off">
                                         </div>
                                     </div>
 
@@ -97,8 +94,7 @@ if (isset($_POST['login'])) {
 
                                     <div class="form-group account-btn text-center m-t-10">
                                         <div class="col-xs-12">
-                                            <button class="btn btn-custom waves-effect waves-light btn-md w-100"
-                                                type="submit" name="login">Log In</button>
+                                            <button class="btn btn-custom waves-effect waves-light btn-md w-100" type="submit" name="login">Log In</button>
                                         </div>
                                     </div>
 
@@ -123,7 +119,7 @@ if (isset($_POST['login'])) {
     <!-- END HOME -->
 
     <script>
-    var resizefunc = [];
+        var resizefunc = [];
     </script>
 
     <!-- jQuery  -->
