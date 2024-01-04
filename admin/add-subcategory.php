@@ -13,8 +13,8 @@
    $subcatname=$_POST['subcategory'];
    $subcatdescription=$_POST['sucatdescription'];
    $status=1;
-   $stmt=$con->prepare("insert into tblsubcategory(CategoryId,Subcategory,SubCatDescription,Is_Active) values('?','?','?','?')");
-   $stmt->execute(array($categoryid,$subcatname,$subcatdescription,$status)); 
+   $stmt=$con->prepare("insert into tblsubcategory(CategoryId,Subcategory,SubCatDescription,Is_Active) values('$categoryid','$subcatname','$subcatdescription','$status')");
+   $stmt->execute(); 
    if($stmt)
    {
    $msg="Sub-Category created ";

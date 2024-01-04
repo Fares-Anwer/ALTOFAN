@@ -6,14 +6,14 @@ if (strlen($_SESSION['login']) == 0) {
    header('location:index.php');
    }
    else{
-   
-   if(isset($_POST['submit']))
+
+   if(isset($_POST['category']))
    {
    $category=$_POST['category'];
    $description=$_POST['description'];
    $status=1;
-   $stmt=$con->prepare("insert into tblcategory(CategoryName,Description,Is_Active) values('?','?','?')");
-   $stmt->execute(array($category,$description,$status)); 
+   $stmt=$con->prepare("insert into tblcategory(CategoryName,Description,Is_Active) values('$category','$description','$status')");
+   $stmt->execute(); 
    
    if($stmt)
    {
