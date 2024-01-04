@@ -8,14 +8,14 @@ if (isset($_POST['login'])) {
     $uname = $_POST['username'];
     $password = md5($_POST['password']);
     // Fetch data from database on the basis of username/email and password
-    $stmt=$con->prepare('SELECT AdminUserName,AdminEmailId,AdminPassword,userType FROM tbladmin WHERE AdminUserName=? AND AdminPassword=?');
-    $stmt->execute(array( $uname, $password));
-    $conut=$stmt->rowCount();
+    $stmt = $con->prepare('SELECT AdminUserName,AdminEmailId,AdminPassword,userType FROM tbladmin WHERE AdminUserName=? AND AdminPassword=?');
+    $stmt->execute(array($uname, $password));
+    $conut = $stmt->rowCount();
 
     if($conut>0){
     $_SESSION['login']=$_POST['username'];
     $_SESSION['utype']=$num['userType'];
-        echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
+        echo "<script typeس='text/javascript'> document.location = 'dashboard.php'; </script>";
     } else {
         echo "<script>alert('Invalid Details');</script>";
     }
