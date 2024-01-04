@@ -75,8 +75,8 @@
                     </ul>
                     <ul class="nav navbar-nav" style=" width: 50%; margin-top: 23px; color: red;">
                         <marquee behavior="scroll" direction="left" onmouseover="this.stop();"
-                            onmouseout="this.start();"><b>Today Trending News : </b><b>For any Website or Project
-                                Development Contact </b> nowdemy@gmail.com</marquee>
+                            onmouseout="this.start();"><b>Today Trending News : </b><b> about Gaza & Tofan Alaqsa
+                            in</b> www.TOFAN.com</marquee>
 
 
                     </ul>

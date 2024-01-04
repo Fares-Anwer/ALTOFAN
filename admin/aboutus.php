@@ -12,8 +12,8 @@ if(isset($_POST['update']))
 $pagetype='aboutus';
 $pagetitle=$_POST['pagetitle'];
 $pagedetails=$_POST['pagedescription'];
-$stmt=$con->prepare("update tblpages set PageTitle='?',Description='?' where PageName='?' ");
-$stmt->execute(array($pagetitle,$pagedetails,$pagetype));  
+$stmt=$con->prepare("update tblpages set PageTitle='$pagetitle',Description='$pagedetails' where PageName='$pagetype' ");
+$stmt->execute();  
 if($stmt)
 {
 $msg="About us  page successfully updated ";
