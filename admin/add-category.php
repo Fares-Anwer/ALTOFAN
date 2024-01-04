@@ -15,7 +15,7 @@
    $status=1;
    $stmt=$con->prepare("insert into tblcategory(CategoryName,Description,Is_Active) values('?','?','?')");
    $stmt->execute(array($category,$description,$status)); 
-   
+   $count=$stmt->rowCount();
    if($stmt)
    {
    $msg="Category created ";

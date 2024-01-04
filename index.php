@@ -127,7 +127,6 @@ $stmt->execute();
 $total_rows = $stmt->fetchColumn();
 $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-
 $stmt=$con->prepare("select tblposts.id as pid,tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblcategory.id as cid,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=1 order by tblposts.id desc  LIMIT $offset, $no_of_records_per_page"); 
 $stmt->execute(); 
  $cnt=1;
@@ -156,7 +155,8 @@ $stmt->execute();
                   <?php } }?>
                   <div class="col-md-12"><a href = "mailto: Nowdemy@gmail.com">
                      <img src="images/ads.jpg" class="img-fluid"></a>
-                     <!-- Pagination -->
+                     <!-- Pagination -->0
+                  
                      <!-- <ul class="pagination justify-content-center mb-4">
                         <li class="page-item"><a href="?pageno=1"  class="page-link border-0">First</a></li>
                         <li class="<?php if ($pageno <= 1) {

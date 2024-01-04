@@ -15,7 +15,7 @@ if (isset($_POST['login'])) {
     if($conut>0){
     $_SESSION['login']=$_POST['username'];
     $_SESSION['utype']=$num['userType'];
-        echo "<script typeس='text/javascript'> document.location = 'dashboard.php'; </script>";
+        echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
     } else {
         echo "<script>alert('Invalid Details');</script>";
     }

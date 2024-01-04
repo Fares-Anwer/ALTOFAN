@@ -93,7 +93,7 @@ $_SESSION['catid']=intval($_GET['catid']);
 
         $stmt=$con->prepare("select tblposts.id as pid,tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.CategoryId='".$_SESSION['catid']."' and tblposts.Is_Active=1 order by tblposts.id desc LIMIT $offset, $no_of_records_per_page"); 
         $stmt->execute(); 
-        if ($stmt->rowCount()) {
+        if ($stmt->rowCount()==0) {
 {
 echo "No record found";
 }}
