@@ -3,8 +3,8 @@ require_once("includes/config.php");
 // code   username availablity
 if(!empty($_POST["username"])) {
 	$uname= $_POST["username"];
-	$stmt=$con->prepare("select AdminuserName from tbladmin where AdminuserName='?'");
-	$stmt->execute(array($uname)); 
+	$stmt=$con->prepare("select AdminuserName from tbladmin where AdminuserName='$uname'");
+	$stmt->execute(); 
 	$row=$stmt->rowCount();
 	if($row>0){
 		echo "<span style='color:red'> Username already exists. Try with another username</span>";

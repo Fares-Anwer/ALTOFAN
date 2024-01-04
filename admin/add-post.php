@@ -36,8 +36,8 @@
    move_uploaded_file($_FILES["postimage"]["tmp_name"],"postimages/".$imgnewfile);
    
    $status=1;
-   $stmt=$con->prepare("insert into tblposts(PostTitle,CategoryId,SubCategoryId,PostDetails,PostUrl,Is_Active,PostImage,postedBy) values('?','?','?','?','?','?','?','')");
-   $stmt->execute(array($posttitle,$catid,$subcatid,$postdetails,$url,$status,$imgnewfile,$postedby));  
+   $stmt=$con->prepare("insert into tblposts(PostTitle,CategoryId,SubCategoryId,PostDetails,PostUrl,Is_Active,PostImage,postedBy) values('$posttitle','$catid','$subcatid','$postdetails','$url','$status','$imgnewfile','$postedby')");
+   $stmt->execute();  
 
    if($stmt)
    {

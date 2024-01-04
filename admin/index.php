@@ -12,11 +12,19 @@ if (isset($_POST['login'])) {
     $stmt->bindParam(':uname', $uname);
     $stmt->bindParam(':password', $password);
     $stmt->execute();
+<<<<<<< HEAD
     $conut = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if($conut>0){
     $_SESSION['login']=$_POST['username'];
     $_SESSION['utype']=$_POST['userType'];
+=======
+    $count = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($count > 0) {
+        $_SESSION['login'] = $_POST['username'];
+        $_SESSION['utype'] = $count['userType'];
+>>>>>>> 14b8b69e2105ad90a3288a5b9339281a95a2b32b
         echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
     } else {
         echo "<script>alert('Invalid Details');</script>";
