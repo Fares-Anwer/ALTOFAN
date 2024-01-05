@@ -38,7 +38,8 @@ include('includes/config.php');
                         <div class="row">
                             <div class="col-lg-12">
                                 <ul class="list-unstyled mb-0">
-                                    <?php
+                                    <?php 
+                              
                                           $stmt=$con->prepare("select id,CategoryName from tblcategory"); 
                                           $stmt->execute(); 
                                            $cnt=1;

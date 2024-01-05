@@ -1,6 +1,6 @@
+
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white fixed-top">
    <div class="container">
-      <a class="navbar-brand" href="index.php"><img src="images/logo.png" height="65"></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
@@ -25,3 +25,6 @@
       </div>
    </div>
 </nav>
+
+<a href="index.php"><img height="120px" width="1200px" src="images/Quds.jpg" alt=""></a> 
+<img  width="1200px" src="images/header.jpg" alt="">
