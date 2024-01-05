@@ -23,7 +23,7 @@ include('includes/config.php');
 </head>
 
 <body>
-   <audio src="includes/Zamil.m4a" autoplay></audio>
+    <audio src="includes/Zamil.m4a" autoplay></audio>
     <!-- Navigation -->
     <?php include('includes/header.php'); ?>
     <!-- Page Content -->
@@ -31,14 +31,14 @@ include('includes/config.php');
         <div class="row" style="margin-top: 4%">
             <!-- Blog Entries Column -->
             <div class="col-md-2 mt-4">
-               <!-- Categories Widget -->
-               <div class="card my-4 border-0" >
-                  <h5 class="card-header bg-white border-0">Categories</h5>
-                  <div class="card-body">
-                     <div class="row">
-                        <div class="col-lg-12">
-                           <ul class="list-unstyled mb-0">
-                              <?php
+                <!-- Categories Widget -->
+                <div class="card my-4 border-0">
+                    <h5 class="card-header bg-white border-0">Categories</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="list-unstyled mb-0">
+                                    <?php
                                           $stmt=$con->prepare("select id,CategoryName from tblcategory"); 
                                           $stmt->execute(); 
                                            $cnt=1;
@@ -47,72 +47,85 @@ include('includes/config.php');
                               
                                  {
                                  ?>
-                              <li class=" mb-2">
-                                 <a href="category.php?catid=<?php echo htmlentities($row['id'])?>" class="text-secondary"><?php echo htmlentities($row['CategoryName']);?></a>
-                              </li>
-                              <?php }} ?>
-                           </ul>
+                                    <li class=" mb-2">
+                                        <a href="category.php?catid=<?php echo htmlentities($row['id'])?>"
+                                            class="text-secondary"><?php echo htmlentities($row['CategoryName']);?></a>
+                                    </li>
+                                    <?php }} ?>
+                                </ul>
+                            </div>
                         </div>
-                     </div>
-                  </div>
-               </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-7">
-               <h4 class="widget-title mb-4">TOP <span>TRAND</span></h4>
-               <!-- Blog Post -->
-               <div class="row">
-                  <div class="owl-carousel owl-theme" id="slider">
-                     <div class="card mb-4 border-0">
-                        <img class="card-img-top" src="admin/postimages/TOF.jpg" alt="" width="100%">
-                        <div class="card-body">
-                           <p class="m-0">
-                              <!--category-->
-                              <a class="badge bg-success text-decoration-none link-light" href="#" style="color:#fff">news</a>
-                              <!--Subcategory--->
-                              <a class="badge bg-warning text-decoration-none link-light"  style="color:#fff">news</a>
-                           </p>
-                           <p class="m-0"><small> Posted on 2023-9-7 09:20:09</small></p>
-                           <a href="#" class="card-title text-decoration-none text-dark">
-                              <h5 class="card-title"> 
-في 7 أكتوبر 2023، استطاع مقاتلون من فصائل المقاومة الفلسطينية، اجتياز حاجز إسرائيل-غزة إلى منطقة غلاف غزة، بالإضافة إلى إطلاق الصواريخ على إسرائيل. وأعلنت إسرائيل بعد ذلك الحرب على حماس، واستدعت 300 ألف جندي احتياطي لتنفيذ العملية العسكرية الإسرائيلية. </h5>
-                           </a>
-                           <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="">Read More &rarr;</a> -->
+                <h4 class="widget-title mb-4">TOP <span>TRAND</span></h4>
+                <!-- Blog Post -->
+                <div class="row">
+                    <div class="owl-carousel owl-theme" id="slider">
+                        <div class="card mb-4 border-0">
+                            <img class="card-img-top" src="admin/postimages/TOF.jpg" alt="" width="100%">
+                            <div class="card-body">
+                                <p class="m-0">
+                                    <!--category-->
+                                    <a class="badge bg-success text-decoration-none link-light" href="#"
+                                        style="color:#fff">news</a>
+                                    <!--Subcategory--->
+                                    <a class="badge bg-warning text-decoration-none link-light"
+                                        style="color:#fff">news</a>
+                                </p>
+                                <p class="m-0"><small> Posted on 2023-9-7 09:20:09</small></p>
+                                <a href="#" class="card-title text-decoration-none text-dark">
+                                    <h5 class="card-title">
+                                        في 7 أكتوبر 2023، استطاع مقاتلون من فصائل المقاومة الفلسطينية، اجتياز حاجز
+                                        إسرائيل-غزة إلى منطقة غلاف غزة، بالإضافة إلى إطلاق الصواريخ على إسرائيل. وأعلنت
+                                        إسرائيل بعد ذلك الحرب على حماس، واستدعت 300 ألف جندي احتياطي لتنفيذ العملية
+                                        العسكرية الإسرائيلية. </h5>
+                                </a>
+                                <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="">Read More &rarr;</a> -->
+                            </div>
                         </div>
-                     </div>
-                     <div class="card mb-4 border-0">
-                        <img class="card-img-top" src="admin/postimages/images.jpeg" alt="" width="100%">
-                        <div class="card-body">
-                           <p class="m-0">
-                              <!--category-->
-                              <a class="badge bg-success text-decoration-none link-light" href="#" style="color:#fff">Sports</a>
-                              <!--Subcategory--->
-                              <a class="badge bg-warning text-decoration-none link-light"  style="color:#fff">Sports</a>
-                           </p>
-                           <p class="m-0"><small> Posted on 2022-11-11 00:20:09</small></p>
-                           <a href="#" class="card-title text-decoration-none text-dark">
-                              <h5 class="card-title">T20 World Cup 2022: Semi-final 1, England vs New Zealand Who Said What</h5>
-                           </a>
-                           <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="">Read More &rarr;</a> -->
+                        <div class="card mb-4 border-0">
+                            <img class="card-img-top" src="admin/postimages/images.jpeg" alt="" width="100%">
+                            <div class="card-body">
+                                <p class="m-0">
+                                    <!--category-->
+                                    <a class="badge bg-success text-decoration-none link-light" href="#"
+                                        style="color:#fff">Sports</a>
+                                    <!--Subcategory--->
+                                    <a class="badge bg-warning text-decoration-none link-light"
+                                        style="color:#fff">Sports</a>
+                                </p>
+                                <p class="m-0"><small> Posted on 2022-11-11 00:20:09</small></p>
+                                <a href="#" class="card-title text-decoration-none text-dark">
+                                    <h5 class="card-title">T20 World Cup 2022: Semi-final 1, England vs New Zealand Who
+                                        Said What</h5>
+                                </a>
+                                <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="">Read More &rarr;</a> -->
+                            </div>
                         </div>
-                     </div>
-                     <div class="card mb-4 border-0">
-                        <img class="card-img-top" src="admin/postimages/8bc5c30be91dca9d07c1db858c60e39f.jpg" alt="" width="100%">
-                        <div class="card-body">
-                           <p class="m-0">
-                              <!--category-->
-                              <a class="badge bg-success text-decoration-none link-light" href="#" style="color:#fff">Sports</a>
-                              <!--Subcategory--->
-                              <a class="badge bg-warning text-decoration-none link-light"  style="color:#fff">Sports</a>
-                           </p>
-                           <p class="m-0"><small> Posted on 2022-11-11 00:20:09</small></p>
-                           <a href="#" class="card-title text-decoration-none text-dark">
-                              <h5 class="card-title">T20 World Cup 2022: Semi-final 1, England vs New Zealand Who Said What</h5>
-                           </a>
-                           <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="">Read More &rarr;</a> -->
+                        <div class="card mb-4 border-0">
+                            <img class="card-img-top" src="admin/postimages/8bc5c30be91dca9d07c1db858c60e39f.jpg" alt=""
+                                width="100%">
+                            <div class="card-body">
+                                <p class="m-0">
+                                    <!--category-->
+                                    <a class="badge bg-success text-decoration-none link-light" href="#"
+                                        style="color:#fff">Sports</a>
+                                    <!--Subcategory--->
+                                    <a class="badge bg-warning text-decoration-none link-light"
+                                        style="color:#fff">Sports</a>
+                                </p>
+                                <p class="m-0"><small> Posted on 2022-11-11 00:20:09</small></p>
+                                <a href="#" class="card-title text-decoration-none text-dark">
+                                    <h5 class="card-title">T20 World Cup 2022: Semi-final 1, England vs New Zealand Who
+                                        Said What</h5>
+                                </a>
+                                <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="">Read More &rarr;</a> -->
+                            </div>
                         </div>
-                     </div>
-                  </div>
-                  <?php 
+                    </div>
+                    <?php 
                      if (isset($_GET['pageno'])) {
                             $pageno = $_GET['pageno'];
                         } else {
@@ -136,30 +149,37 @@ $stmt->execute();
   foreach ($stmt->fetchAll() as $row)
                      {
                      ?>
-                  <div class="col-md-6">
-                     <div class="card mb-4 border-0">
-                        <img class="card-img-top" src="admin/postimages/<?php echo htmlentities($row['PostImage']);?>" alt="<?php echo htmlentities($row['posttitle']);?>" height="200px">
-                        <div class="card-body">
-                           <p class="m-0">
-                              <!--category-->
-                              <a class="badge bg-success text-decoration-none link-light" href="category.php?catid=<?php echo htmlentities($row['cid'])?>" style="color:#fff"><?php echo htmlentities($row['category']);?></a>
-                              <!--Subcategory--->
-                              <a class="badge bg-warning text-decoration-none link-light"  style="color:#fff"><?php echo htmlentities($row['subcategory']);?></a>
-                           </p>
-                           <p class="m-0"><small> Posted on <?php echo htmlentities($row['postingdate']);?></small></p>
-                           <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="card-title text-decoration-none text-dark">
-                              <h5 class="card-title"><?php echo htmlentities($row['posttitle']);?></h5>
-                           </a>
-                           <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="">Read More &rarr;</a> -->
+                    <div class="col-md-6">
+                        <div class="card mb-4 border-0">
+                            <img class="card-img-top"
+                                src="admin/postimages/<?php echo htmlentities($row['PostImage']);?>"
+                                alt="<?php echo htmlentities($row['posttitle']);?>" height="200px">
+                            <div class="card-body">
+                                <p class="m-0">
+                                    <!--category-->
+                                    <a class="badge bg-success text-decoration-none link-light"
+                                        href="category.php?catid=<?php echo htmlentities($row['cid'])?>"
+                                        style="color:#fff"><?php echo htmlentities($row['category']);?></a>
+                                    <!--Subcategory--->
+                                    <a class="badge bg-warning text-decoration-none link-light"
+                                        style="color:#fff"><?php echo htmlentities($row['subcategory']);?></a>
+                                </p>
+                                <p class="m-0"><small> Posted on <?php echo htmlentities($row['postingdate']);?></small>
+                                </p>
+                                <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>"
+                                    class="card-title text-decoration-none text-dark">
+                                    <h5 class="card-title"><?php echo htmlentities($row['posttitle']);?></h5>
+                                </a>
+                                <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="">Read More &rarr;</a> -->
+                            </div>
                         </div>
-                     </div>
-                  </div>
-                  <?php } }?>
-                  <div class="col-md-12"><a href = "mailto: Nowdemy@gmail.com">
-                     <img src="images/ads.jpg" class="img-fluid"></a>
-                     <!-- Pagination -->0
-                  
-                     <!-- <ul class="pagination justify-content-center mb-4">
+                    </div>
+                    <?php } }?>
+                    <div class="col-md-12"><a href="mailto: Nowdemy@gmail.com">
+                            <img src="images/ads.jpg" class="img-fluid"></a>
+                        <!-- Pagination -->0
+
+                        <!-- <ul class="pagination justify-content-center mb-4">
                         <li class="page-item"><a href="?pageno=1"  class="page-link border-0">First</a></li>
                         <li class="<?php if ($pageno <= 1) {
                                         echo 'disabled';
@@ -206,11 +226,11 @@ $stmt->execute();
                         </div>
                     </div>
 
-                    <!-- Sidebar Widgets Column -->
-                    <?php include('includes/sidebar.php'); ?>
                 </div>
 
             </div>
+            <!-- Sidebar Widgets Column -->
+            <?php include('includes/sidebar.php'); ?>
             <!-- /.row -->
         </div>
         <!-- /.container -->
