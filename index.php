@@ -40,8 +40,8 @@ include('includes/config.php');
                                 <ul class="list-unstyled mb-0">
                                     <?php 
                               
-                                          $stmt=$con->prepare("select id,CategoryName from tblcategory"); 
-                                          $stmt->execute(); 
+                                                    $stmt=$con->prepare("select id,CategoryName from tblcategory"); 
+                                                    $stmt->execute(); 
                                            $cnt=1;
                                            if ($stmt->rowCount()) {
                                             foreach ($stmt->fetchAll() as $row)
