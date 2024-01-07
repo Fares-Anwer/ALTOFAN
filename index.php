@@ -92,14 +92,15 @@ include('includes/config.php');
                                 <p class="m-0">
                                     <!--category-->
                                     <a class="badge bg-success text-decoration-none link-light" href="#"
-                                        style="color:#fff">Sports</a>
+                                        style="color:#fff">news</a>
                                     <!--Subcategory--->
                                     <a class="badge bg-warning text-decoration-none link-light"
-                                        style="color:#fff">Sports</a>
+                                        style="color:#fff">news</a>
                                 </p>
                                 <p class="m-0"><small> Posted on 2023-11-11 00:20:09</small></p>
                                 <a href="#" class="card-title text-decoration-none text-dark">
-                                    <h5 class="card-title">T
+                                    <h5 class="card-title">علن القائد العام لكتائب القسام بدء عملية "طوفان الأقصى"
+                                         ردًا على جرائم الاحتلال الإسرائيلي، في وقت انطلقت عشرات الرشقات الصاروخية من قطاع غزة، بالتزامن مع تسلّل مقاومين فلسطينيين إلى مستوطنات غلاف غزة.
                                          </h5>
                                 </a>
                                 <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="">Read More &rarr;</a> -->
@@ -112,13 +113,13 @@ include('includes/config.php');
                                 <p class="m-0">
                                     <!--category-->
                                     <a class="badge bg-success text-decoration-none link-light" href="#"
-                                        style="color:#fff">Sports</a>
+                                        style="color:#fff">news</a>
                                     <!--Subcategory--->
                                     <a class="badge bg-warning text-decoration-none link-light"
-                                        style="color:#fff">Sports</a>
+                                        style="color:#fff">news</a>
                                 </p>
                                 <p class="m-0"><small> Posted on 2023-12-11 00:20:09</small></p>
-                                <a href="#" class="card-title text-decoration-none text-dark">
+                                <a href="#" class="card-title text-decoration-none text-dark">منذ صباح السبت، أعلن الجناح العسكري لحركة حماس، كتائب القسام، بدءه عملية ضد إسرائيل وأطلق عليها اسم "طوفان الأقصى"، في حين أعلنت إسرائيل ردّها بإعلان الحرب على الأراضي الفلسطينية. فكيف بدا المشهد حيث مراسلينا في قطاع غزة، رام الله، والقدس؟
                                     <h5 class="card-title">
                                          </h5>
                                 </a>
@@ -212,15 +213,20 @@ $stmt->execute();
                                 <p class="m-0">
                                     <!--category-->
                                     <a class="badge bg-success text-decoration-none link-light" href="#"
-                                        style="color:#fff">Sports</a>
+                                        style="color:#fff">Gaza</a>
                                     <!--Subcategory--->
                                     <a class="badge bg-warning text-decoration-none link-light"
-                                        style="color:#fff">Sports</a>
+                                        style="color:#fff">Gaza</a>
                                 </p>
-                                <p class="m-0"><small> Posted on 2022-11-11 00:20:09</small></p>
+                                <p class="m-0"><small> Posted on 2023-12-30 00:20:09</small></p>
                                 <a href="#" class="card-title text-decoration-none text-dark">
-                                    <h5 class="card-title">T20 World Cup 2022: Semi-final 1, England vs New Zealand Who
-                                        Said What</h5>
+                                    <h5 class="card-title">وأفادت وزراة الصحة الفلسطينية في قطاع غزة في بيان رسمي اليوم، بارتفاع حصيلة القتلى الفلسطينيين في القطاع جراء الغارات الإسرائيلية إلى 1417 فيما أصيب 6268 آخرون.
+
+وأشارت وزارة الصحة الفلسطينية في بيان رسمي، أن بين ضحايا الغارات الإسرائيلية ما يقرب من  447 طفلا و248 امرأة.
+
+وأعلنت الصحة الفلسطينية في وقت سابق اليوم أن حصيلة قتلى القصف والغارات الإسرائيلية وصلت إلى 1354 والجرحى إلى أكثر من 6049 في غزة، وإلى 31 قتيلا و180 جريحا في الضفة الغربية المحتلة.
+
+ودخلت عملية "طوفان الأقصى" التي أطلقتها حركة "حماس" يومها السادس، وسط تكثيف الجيش الإسرائيلي غاراته على قطاع غزة، وتوسيع رقعة الاستهداف لتشمل جنوب لبنان.</h5>
                                 </a>
                                 <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>" class="">Read More &rarr;</a> -->
                             </div>
