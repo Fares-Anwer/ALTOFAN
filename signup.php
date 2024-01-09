@@ -19,7 +19,7 @@
    echo "<script>alert('Something went wrong. Please try again.');</script>";
    }
    }
-
+  
 
    else{
       
@@ -64,7 +64,7 @@
                 <div class="col-xs-4"></div>
                 <div class="col-xs-4 form">
                     <h1> Sign up </h1>
-                    <form action="" method="POST" >
+                    <form method="POST" action="signup.php" >
                         <div class="form-group">
                                 <input class="form-control" placeholder="Name" type="text" name="name" required="true">
             

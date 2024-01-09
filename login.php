@@ -8,20 +8,20 @@ if(isset($_POST['login'])) {
  
 
     // Getting username/ email and password
-    $uname = $_POST['username'];
+    $username = $_POST['username'];
     $passwd = md5($_POST['password']);
     // Fetch data from database on the basis of username/email and password
-    $stmt = $con->prepare("SELECT name,email,password,phone,username,gender FROM tbluser WHERE username= :uname AND password= :passwd");
-    $stmt->bindParam(':uname', $uname);
-    $stmt->bindParam(':password', $passwd);
-    $stmt->execute();
-    $conut = $stmt->rowCount();
-		$conut=0;
+    $stmt = $con->prepare("SELECT name,email,password,phone,username,gender FROM tbluser WHERE username=:username AND password= :passwd");
 
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':passwd', $passwd);
+	$stmt->execute();
+    $conut = $stmt->fetch(PDO::FETCH_ASSOC);
+		
 
     if ($conut > 0) {
         $_SESSION['login'] = $_POST['username'];
-        echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
+        echo "<script type='text/javascript'> document.location = 'index'; </script>";
     } else {
         echo "<script>alert('Invalid Details');</script>";
   }
@@ -76,7 +76,7 @@ if(isset($_POST['login'])) {
 				<span class="login100-form-title p-b-41">
 					User Login
 				</span>
-				<form method="post" class="login100-form m p-b-33 p-t-5" action="index.php" >
+				<form method="post" class="login100-form m p-b-33 p-t-5" >
 
 					<div class="wrap-input100 validate-input" >
 						<input class="input100" type="text" required="" name="username" placeholder="Username or email" autocomplete="off" autofocus>
