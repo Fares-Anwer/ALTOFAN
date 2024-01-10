@@ -23,6 +23,8 @@ if(isset($_POST['login'])) {
         echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
     } else {
         echo "<script>alert('Invalid Details');</script>";
+		        echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
+
   }
 }else{
 ?>
@@ -113,7 +115,6 @@ if(isset($_POST['login'])) {
 
         <!-- jQuery  -->
         <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/detect.js"></script>
         <script src="assets/js/fastclick.js"></script>
         <script src="assets/js/jquery.blockUI.js"></script>

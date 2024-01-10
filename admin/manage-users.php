@@ -7,7 +7,7 @@
    header('location:index.php');
    }
    else{
-   
+
    // Code for Forever deletionparmdel
    if($_GET['action']=='del' && $_GET['rid'])
    {
@@ -52,7 +52,7 @@
                      <div class="col-md-12">
                         <div class="demo-box m-t-20">
                            <div class="m-b-30">
-                              <a href="aadd-subadmins.php">
+                              <a href="add-user.php">
                               <button id="addToTable" class="btn btn-custom waves-effect waves-light btn-md">Add <i class="mdi mdi-plus-circle-outline" ></i></button>
                               </a>
                            </div>
@@ -66,7 +66,7 @@
                                        <th>phone</th>
                                        <th>gender</th>
                                        <th> username:id</th>
-                                       <th></th>
+                                       <th>action</th>
                                        
                                     </tr>
                                  </thead><?php include('includes/footer.php');?>
@@ -88,8 +88,8 @@
                                        <td><?php echo htmlentities($row['gender']);?></td>
                                        <td><?php echo htmlentities($row['username']);?></td>
 
-                                       <td><a href="edit-subadmin.php?said=<?php echo htmlentities($row['id']);?>"  class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a> 
-                                          &nbsp;<a href="manage-subadmins.php?rid=<?php echo htmlentities($row['id']);?>&&action=del" class="btn btn-danger btn-sm"> <i class="fa fa-trash-o"></i></a> 
+                                       <td><a href="edit-users.php?said=<?php echo htmlentities($row['username']);?>"  class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a> 
+                                          &nbsp;<a href="manage-users.php?rid=<?php echo htmlentities($row['username']);?>&&action=del" class="btn btn-danger btn-sm"> <i class="fa fa-trash-o"></i></a> 
                                        </td>
                                     </tr>
                                     <?php

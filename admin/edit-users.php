@@ -11,11 +11,11 @@
    {
    $aid=intval($_GET['said']);
    $email=$_POST['emailid'];
-   $stmt=$con->prepare("Update  tbladmin set AdminEmailId='$email'  where userType=0 && id='$aid'");   
+   $stmt=$con->prepare("Update  tbluser set email='$email'  where username='$aid'");   
    $stmt->execute(); 
    if($stmt)
    {
-   echo "<script>alert('Sub-admin details updated.');</script>";
+   echo "<script>alert('user details updated.');</script>";
    }
    else{
    echo "<script>alert('Something went wrong . Please try again.');</script>";
@@ -37,16 +37,13 @@
                   <div class="row">
                      <div class="col-xs-12">
                         <div class="page-title-box">
-                           <h4 class="page-title">Edit Subadmin</h4>
+                           <h4 class="page-title">Edit user</h4>
                            <ol class="breadcrumb p-0 m-0">
                               <li>
                                  <a href="#">Admin</a>
-                              </li>
-                              <li>
-                                 <a href="#">Subadmin </a>
-                              </li>
+                              </li>                            
                               <li class="active">
-                                 Edit Subadmin
+                                 Edit user
                               </li>
                            </ol>
                            <div class="clearfix"></div>
@@ -57,7 +54,7 @@
                   <div class="row">
                      <div class="col-sm-12">
                         <div class="card-box">
-                           <h4 class="m-t-0 header-title"><b>Edit Subadmin </b></h4>
+                           <h4 class="m-t-0 header-title"><b>Edit user </b></h4>
                            <hr />
                            <div class="row">
                               <div class="col-sm-6">
@@ -76,8 +73,8 @@
                               </div>
                            </div>
                            <?php 
-                              $aid=intval($_GET['said']);
-                              $stmt=$con->prepare("Select * from  tbladmin where userType=0 && id='$aid'"); 
+                              $aid=$_GET['said'];
+                              $stmt=$con->prepare("Select * from  tbluser where username='$aid'"); 
                               $stmt->execute(); 
                             $cnt=1;
                         if ($stmt->rowCount()) {
@@ -88,21 +85,21 @@
                               <form class="row" name="suadmin" method="post">
                                  <div class="form-group col-md-6">
                                     <label class="control-label">Username</label>
-                                    <input type="text" class="form-control" value="<?php echo htmlentities($row['AdminUserName']);?>" name="adminusernmae" readonly>
+                                    <input type="text" class="form-control" value="<?php echo htmlentities($row['name']);?>" name="adminusernmae" readonly>
                                  </div>
                                  <div class="form-group col-md-6">
                                     <label class=" control-label">Emailid</label>
                                     <div class="">
-                                       <input type="text" class="form-control" value="<?php echo htmlentities($row['AdminEmailId']);?>" name="emailid" required>
+                                       <input type="text" class="form-control" value="<?php echo htmlentities($row['email']);?>" name="emailid" required>
                                     </div>
                                  </div>
                                  <div class="form-group col-md-6">
                                     <label class="control-label">Creation Dtae</label>
-                                       <input type="text" class="form-control" value="<?php echo htmlentities($row['CreationDate']);?>" name="cdate" readonly>
+                                       <input type="text" class="form-control" value="<?php echo htmlentities($row['phone']);?>" name="cdate" readonly>
                                  </div>
                                  <div class="form-group col-md-6">
                                     <label class="control-label">Updation date</label>
-                                       <input type="text" class="form-control" value="<?php echo htmlentities($row['UpdationDate']);?>" name="udate" readonly>
+                                       <input type="text" class="form-control" value="<?php echo htmlentities($row['username']);?>" name="udate" readonly>
                                  </div>
                                  <?php } }?>
                                  <div class="form-group col-md-12">

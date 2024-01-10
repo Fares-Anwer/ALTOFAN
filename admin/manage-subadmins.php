@@ -52,7 +52,7 @@
                      <div class="col-md-12">
                         <div class="demo-box m-t-20">
                            <div class="m-b-30">
-                              <a href="aadd-subadmins.php">
+                              <a href="add-subadmins.php">
                               <button id="addToTable" class="btn btn-custom waves-effect waves-light btn-md">Add <i class="mdi mdi-plus-circle-outline" ></i></button>
                               </a>
                            </div>
@@ -71,7 +71,7 @@
    
                                  <tbody>
                                     <?php 
-                                         $stmt=$con->prepare("Select id,CategoryName,Description,PostingDate,UpdationDate from  tblcategory where Is_Active=0"); 
+                                         $stmt=$con->prepare("Select * from  tbladmin where userType=0"); 
                                          $stmt->execute(); 
                                           $cnt=1;
                                           if ($stmt->rowCount()) {
