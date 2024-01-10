@@ -14,9 +14,11 @@
    $stmt->execute();  
    if($stmt){
    echo "<script>alert('user details added successfully.');</script>";
-   echo "<script type='text/javascript'> document.location = 'login; </script>";
+   echo "<script type='text/javascript'> document.location ='index.php'; </script>";
    } else {
    echo "<script>alert('Something went wrong. Please try again.');</script>";
+           echo "<script type='text/javascript'> document.location ='signup.php'; </script>";
+
    }
    }
   
@@ -87,9 +89,9 @@
                                 <br>
                                 <label for="gender">gender</label>
                                 <select class="form-control" id="gender"  name="gender" >
-                                    <option value="1">famel</option>
-                                    <option value="2">Male</option>
-                                    <option value="3">other</option>
+                                    <option value="0">famel</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">other</option>
                                 </select>
                                 <br>
             

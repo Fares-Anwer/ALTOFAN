@@ -8,7 +8,7 @@ if(isset($_POST['submit']))
     $username=$_POST['username'];
     $email=$_POST['email'];
 $password=md5($_POST['newpassword']);
-                            $stmt=$con->prepare("select username from tbluser where  email='$email' and username='$username' "); 
+                            $stmt=$con->prepare("select * from tbluser where  email='$email' and username='$username' "); 
                               $stmt->execute(); 
                              $ret= $stmt->rowCount();   
     if($ret>0){
@@ -25,6 +25,8 @@ echo "<script type='text/javascript'> document.location = 'index.php'; </script>
     else{
     
       echo "<script>alert('Invalid Details. Please try again.');</script>";
+              echo "<script type='text/javascript'> document.location = 'forgot-password.php'; </script>";
+
     }
   }
 

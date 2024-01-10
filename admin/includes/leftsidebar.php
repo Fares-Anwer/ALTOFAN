@@ -21,7 +21,13 @@
                             </li>
 <?php endif;?>
                
-
+                         <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="ti ti-user"></i> <span> users </span> <span class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="add-user.php">Add user</a></li>
+                                    <li><a href="manage-users.php">Manage users</a></li>
+                                </ul>
+                            </li>
 
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-format-list-bulleted"></i> <span> Category </span> <span class="menu-arrow"></span></a>

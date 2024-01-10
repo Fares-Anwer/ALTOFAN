@@ -12,18 +12,17 @@ if(isset($_POST['login'])) {
     $passwd = md5($_POST['password']);
     // Fetch data from database on the basis of username/email and password
     $stmt = $con->prepare("SELECT name,email,password,phone,username,gender FROM tbluser WHERE username=:username AND password= :passwd");
-
     $stmt->bindParam(':username', $username);
     $stmt->bindParam(':passwd', $passwd);
 	$stmt->execute();
     $conut = $stmt->fetch(PDO::FETCH_ASSOC);
-		
-
     if ($conut > 0) {
         $_SESSION['login'] = $_POST['username'];
-        echo "<script type='text/javascript'> document.location = 'index'; </script>";
+        echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
     } else {
         echo "<script>alert('Invalid Details');</script>";
+		        echo "<script type='text/javascript'> document.location = 'login.php'; </script>";
+
   }
 }else{
 ?>
@@ -113,7 +112,7 @@ if(isset($_POST['login'])) {
                 </div>
             </div>
         </div>
-    </section>
+ 
     <!-- END HOME -->
 
 	<div id="dropDownSelect1"></div>
@@ -124,7 +123,6 @@ if(isset($_POST['login'])) {
 
         <!-- jQuery  -->
         <script src="admin/assets/js/jquery.min.js"></script>
-        <script src="admin/assets/js/bootstrap.min.js"></script>
         <script src="admin/assets/js/detect.js"></script>
         <script src="admin/assets/js/fastclick.js"></script>
         <script src="admin/assets/js/jquery.blockUI.js"></script>

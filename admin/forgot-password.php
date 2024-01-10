@@ -37,12 +37,12 @@ echo "<script type='text/javascript'> document.location = 'index.php'; </script>
    
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="101 + News Station Portal.">
+        <meta name="description" content="ALTOFAN.">
         <meta name="author" content="xyz">
 
 
         <!-- App title -->
-        <title>101 + News Station Portal | Forgot Password</title>
+        <title>ALTOFAN | Forgot Password</title>
 
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
