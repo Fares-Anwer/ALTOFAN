@@ -1,5 +1,5 @@
 <?php 
-
+// CONFIGRATION
 $dsn = "mysql:host=localhost;dbname=newsportal";
 $user = "root";
 $pass= "";
