@@ -99,6 +99,21 @@
                     </div>
                 </a>
                 <!-- end col -->
+                 <a href="manage-users.php">
+                    <div class="col-lg-2 col-md-2 col-sm-6">
+                        <div class="card-box widget-box-one text-center">
+                            <i class="ti ti-user"></i>
+                            <div class="wigdet-one-content">
+                                <p class="m-0 text-secondary" title="Statistics">users Listed</p>
+                                <?php  $stmt=$con->prepare("SELECT * FROM tbluser ");
+                        $stmt->execute();   
+                        $countcat=$stmt->rowCount();  
+                           ?>
+                                <h2><?php echo htmlentities($countcat);?> <small></small></h2>
+                            </div>
+                        </div>
+                    </div>
+                </a>
                 <a href="manage-posts.php">
                     <div class="col-lg-2 col-md-2 col-sm-6">
                         <div class="card-box widget-box-one text-center">

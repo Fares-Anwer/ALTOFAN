@@ -10,13 +10,19 @@
                <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link" href="about-us.php"><i class="fa fa-info-circle"></i> About</a>
+<a class="nav-link" href="donations.php"><i class="fa fa-leaf"></i> Donations</a>
+
             </li>
             <li class="nav-item">
                <a class="nav-link" href="index.php"><i class="fa-newspaper-o fa"></i> News</a>
             </li>
             <li class="nav-item">
                <a class="nav-link" href="contact-us.php"><i class="fa fa-phone"></i> Contact us</a>
+            </li>
+
+            <li>
+               <a class="nav-link" href="about-us.php"><i class="fa fa-info-circle"></i> About</a>
+
             </li>
          </ul>
       </div>

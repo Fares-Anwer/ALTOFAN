@@ -69,15 +69,11 @@
                                 </ul>
                             </li>   
  <li >
-                                <a href="https://mayurik.com/source-code/P4030/news-portal-project-in-php" class="waves-effect"><i class="ti ti-info-alt"></i> <span> Source Code Info </span></a>
                                 
                             </li>
                         </ul>
                     </div>
-                    <!-- Sidebar -->
-                    <div class="clearfix"></div>
-
-                    
+             
 
                 </div>
                 <!-- Sidebar -left -->

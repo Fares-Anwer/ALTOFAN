@@ -3,78 +3,61 @@
                     <div class="row">
                         <div class="col">
                             <ul class="float-left list-unstyled ">
-                                <li class="mb-2"><a href="#" class="text-dark">Global Economy</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Environment</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Religion</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Fashion</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Terrorism</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Conflicts</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Scandals</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Executive</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Foreign policy</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">غزة اليوم</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">أخبار اليمن</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">غزة الآن</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">يحيى سريع</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">أبو عبيدة اليوم</a></li>
+                             
                             </ul>
                         </div>
                         <div class="col">
                             <ul class="float-left list-unstyled ">
-                                <li class="mb-2"><a class="text-dark" href="#">Healthy Living</a></li>
-                                <li class="mb-2"><a class="text-dark" href="#">Medical Research</a></li>
-                                <li class="mb-2"><a class="text-dark" href="#">Children’s Health</a></li>
-                                <li class="mb-2"><a class="text-dark" href="#">Around the World</a></li>
-                                <li class="mb-2"><a class="text-dark" href="#">Ad Choices</a></li>
-                                <li class="mb-2"><a class="text-dark" href="#">Mental Health</a></li>
-                                <li class="mb-2"><a class="text-dark" href="#">Media</a></li>
-                                <li class="mb-2"><a class="text-dark" href="#">Relations</a></li>
+                                <li class="mb-2"><a class="text-dark" href="#">مجازر غزة</a></li>
+                                <li class="mb-2"><a class="text-dark" href="#">شهداء غزة</a></li>
+                                <li class="mb-2"><a class="text-dark" href="#">الكيان الصهيوني</a></li>
+                                <li class="mb-2"><a class="text-dark" href="#">القدس </a></li>
+                                <li class="mb-2"><a class="text-dark" href="#">سفن إسرائيل</a></li>
+                               
                             </ul>
                         </div>
                         <div class="col">
                             <ul class="float-left list-unstyled ">
-                                <li class="mb-2"><a href="#" class="text-dark">Real Estate</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Commercial</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Find A Home</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Mortgage Calculator</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">My Real Estate</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">The High End</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">List Your Home</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">World</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Magazine</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">الخروج الميداني</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">بس كملت</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">كملت اللي بعقلي كلهن</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">مو أكتب</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">مدري</a></li>
+                        
+                        </div>
+                        <div class="col">
+                            <ul class="float-left list-unstyled ">
+                                <li class="mb-2"><a href="#" class="text-dark">العرب</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">اليمن</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">البحرين</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">سعيد</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">بس</a></li>
+                               
                             </ul>
                         </div>
                         <div class="col">
                             <ul class="float-left list-unstyled ">
-                                <li class="mb-2"><a href="#" class="text-dark">U.S.</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Politics</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">N.Y.</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Business</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Opinion</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Tech</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Science</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Health</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Sports</a></li>
-                            </ul>
-                        </div>
-                        <div class="col">
-                            <ul class="float-left list-unstyled ">
-                                <li class="mb-2"><a href="#" class="text-dark">Arts</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Books</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Style</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Food</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Travel</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">T Magazine</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Real Estate</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Obituaries</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Video</a></li>
-                            </ul>
+                                <li class="mb-2"><a href="#" class="text-dark">الطوفان</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">بداية الحرب</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">أبو عبيدة </a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">القوات الجوية</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">رد الشعب الفلسطيني</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">سفن إٍسرائيل</a></li>
+                           
                         </div>
                         <div class="col d-none d-lg-block">
                             <ul class="float-left list-unstyled ">
-                                <li class="mb-2"><a href="#" class="text-dark">Baseball</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Basketball</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Football: College</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Football: N.F.L.</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Golf</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Hockey</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Soccer</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">Tennis</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">سفن إٍسرائيل</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">رد أمريكا</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">ميدان السبعين اليوم</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">وائل الدحدوح</a></li>
+                                <li class="mb-2"><a class="text-dark" href="#">أطفال غزة</a></li>
+                             
                             </ul>
                         </div>
                     </div>
