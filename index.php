@@ -4,7 +4,7 @@ include('includes/config.php');
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 
 <head>
     <meta charset="utf-8">
@@ -38,21 +38,20 @@ include('includes/config.php');
                         <div class="row">
                             <div class="col-lg-12">
                                 <ul class="list-unstyled mb-0">
-                                    <?php 
-                              
-                                                    $stmt=$con->prepare("select id,CategoryName from tblcategory"); 
-                                                    $stmt->execute(); 
-                                           $cnt=1;
-                                           if ($stmt->rowCount()) {
-                                            foreach ($stmt->fetchAll() as $row)
-                              
-                                 {
-                                 ?>
+                                    <?php
+
+                                    $stmt = $con->prepare("select id,CategoryName from tblcategory");
+                                    $stmt->execute();
+                                    $cnt = 1;
+                                    if ($stmt->rowCount()) {
+                                        foreach ($stmt->fetchAll() as $row) {
+                                    ?>
                                     <li class=" mb-2">
-                                        <a href="category.php?catid=<?php echo htmlentities($row['id'])?>"
-                                            class="text-secondary"><?php echo htmlentities($row['CategoryName']);?></a>
+                                        <a href="category.php?catid=<?php echo htmlentities($row['id']) ?>"
+                                            class="text-secondary"><?php echo htmlentities($row['CategoryName']); ?></a>
                                     </li>
-                                    <?php }} ?>
+                                    <?php }
+                                    } ?>
                                 </ul>
                             </div>
                         </div>
@@ -83,7 +82,7 @@ include('includes/config.php');
                                         إسرائيل بعد ذلك الحرب على حماس، واستدعت 300 ألف جندي احتياطي لتنفيذ العملية
                                         العسكرية الإسرائيلية. </h5>
                                 </a>
-                                <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="">Read More &rarr;</a> -->
+                                <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>" class="">Read More &rarr;</a> -->
                             </div>
                         </div>
                         <div class="card mb-4 border-0">
@@ -100,15 +99,15 @@ include('includes/config.php');
                                 <p class="m-0"><small> Posted on 2023-11-11 00:20:09</small></p>
                                 <a href="#" class="card-title text-decoration-none text-dark">
                                     <h5 class="card-title">علن القائد العام لكتائب القسام بدء عملية "طوفان الأقصى"
-                                         ردًا على جرائم الاحتلال الإسرائيلي، في وقت انطلقت عشرات الرشقات الصاروخية من قطاع غزة، بالتزامن مع تسلّل مقاومين فلسطينيين إلى مستوطنات غلاف غزة.
-                                         </h5>
+                                        ردًا على جرائم الاحتلال الإسرائيلي، في وقت انطلقت عشرات الرشقات الصاروخية من
+                                        قطاع غزة، بالتزامن مع تسلّل مقاومين فلسطينيين إلى مستوطنات غلاف غزة.
+                                    </h5>
                                 </a>
-                                <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="">Read More &rarr;</a> -->
+                                <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>" class="">Read More &rarr;</a> -->
                             </div>
                         </div>
                         <div class="card mb-4 border-0">
-                            <img class="card-img-top" src="admin/postimages/TOFF.jpg" alt=""
-                                width="100%">
+                            <img class="card-img-top" src="admin/postimages/TOFF.jpg" alt="" width="100%">
                             <div class="card-body">
                                 <p class="m-0">
                                     <!--category-->
@@ -119,64 +118,68 @@ include('includes/config.php');
                                         style="color:#fff">news</a>
                                 </p>
                                 <p class="m-0"><small> Posted on 2023-12-11 00:20:09</small></p>
-                                <a href="#" class="card-title text-decoration-none text-dark">منذ صباح السبت، أعلن الجناح العسكري لحركة حماس، كتائب القسام، بدءه عملية ضد إسرائيل وأطلق عليها اسم "طوفان الأقصى"، في حين أعلنت إسرائيل ردّها بإعلان الحرب على الأراضي الفلسطينية. فكيف بدا المشهد حيث مراسلينا في قطاع غزة، رام الله، والقدس؟
+                                <a href="#" class="card-title text-decoration-none text-dark">منذ صباح السبت، أعلن
+                                    الجناح العسكري لحركة حماس، كتائب القسام، بدءه عملية ضد إسرائيل وأطلق عليها اسم
+                                    "طوفان الأقصى"، في حين أعلنت إسرائيل ردّها بإعلان الحرب على الأراضي الفلسطينية. فكيف
+                                    بدا المشهد حيث مراسلينا في قطاع غزة، رام الله، والقدس؟
                                     <h5 class="card-title">
-                                         </h5>
+                                    </h5>
                                 </a>
-                                <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="">Read More &rarr;</a> -->
+                                <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>" class="">Read More &rarr;</a> -->
                             </div>
                         </div>
                     </div>
-                    <?php 
-                     if (isset($_GET['pageno'])) {
-                            $pageno = $_GET['pageno'];
-                        } else {
-                            $pageno = 1;
-                        }
-                        $no_of_records_per_page = 8;
-                        $offset = ($pageno-1) * $no_of_records_per_page;
-                     
-                    
+                    <?php
+                    if (isset($_GET['pageno'])) {
+                        $pageno = $_GET['pageno'];
+                    } else {
+                        $pageno = 1;
+                    }
+                    $no_of_records_per_page = 8;
+                    $offset = ($pageno - 1) * $no_of_records_per_page;
 
-$total_pages_sql = "SELECT COUNT(*) FROM tblposts";
-$stmt = $con->prepare($total_pages_sql);
-$stmt->execute();
-$total_rows = $stmt->fetchColumn();
-$total_pages = ceil($total_rows / $no_of_records_per_page);
 
-$stmt=$con->prepare("select tblposts.id as pid,tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblcategory.id as cid,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=1 order by tblposts.id desc  LIMIT $offset, $no_of_records_per_page"); 
-$stmt->execute(); 
- $cnt=1;
- if ($stmt->rowCount()) {
-  foreach ($stmt->fetchAll() as $row)
-                     {
-                     ?>
+
+                    $total_pages_sql = "SELECT COUNT(*) FROM tblposts";
+                    $stmt = $con->prepare($total_pages_sql);
+                    $stmt->execute();
+                    $total_rows = $stmt->fetchColumn();
+                    $total_pages = ceil($total_rows / $no_of_records_per_page);
+
+                    $stmt = $con->prepare("select tblposts.id as pid,tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblcategory.id as cid,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=1 order by tblposts.id desc  LIMIT $offset, $no_of_records_per_page");
+                    $stmt->execute();
+                    $cnt = 1;
+                    if ($stmt->rowCount()) {
+                        foreach ($stmt->fetchAll() as $row) {
+                    ?>
                     <div class="col-md-6">
                         <div class="card mb-4 border-0">
                             <img class="card-img-top"
-                                src="admin/postimages/<?php echo htmlentities($row['PostImage']);?>"
-                                alt="<?php echo htmlentities($row['posttitle']);?>" height="200px">
+                                src="admin/postimages/<?php echo htmlentities($row['PostImage']); ?>"
+                                alt="<?php echo htmlentities($row['posttitle']); ?>" height="200px">
                             <div class="card-body">
                                 <p class="m-0">
                                     <!--category-->
                                     <a class="badge bg-success text-decoration-none link-light"
-                                        href="category.php?catid=<?php echo htmlentities($row['cid'])?>"
-                                        style="color:#fff"><?php echo htmlentities($row['category']);?></a>
+                                        href="category.php?catid=<?php echo htmlentities($row['cid']) ?>"
+                                        style="color:#fff"><?php echo htmlentities($row['category']); ?></a>
                                     <!--Subcategory--->
                                     <a class="badge bg-warning text-decoration-none link-light"
-                                        style="color:#fff"><?php echo htmlentities($row['subcategory']);?></a>
+                                        style="color:#fff"><?php echo htmlentities($row['subcategory']); ?></a>
                                 </p>
-                                <p class="m-0"><small> Posted on <?php echo htmlentities($row['postingdate']);?></small>
+                                <p class="m-0"><small> Posted on
+                                        <?php echo htmlentities($row['postingdate']); ?></small>
                                 </p>
-                                <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>"
+                                <a href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>"
                                     class="card-title text-decoration-none text-dark">
-                                    <h5 class="card-title"><?php echo htmlentities($row['posttitle']);?></h5>
+                                    <h5 class="card-title"><?php echo htmlentities($row['posttitle']); ?></h5>
                                 </a>
-                                <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid'])?>" class="">Read More &rarr;</a> -->
+                                <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>" class="">Read More &rarr;</a> -->
                             </div>
                         </div>
                     </div>
-                    <?php } }?>
+                    <?php }
+                    } ?>
                     <div class="col-md-12"><a href="mailto: Nowdemy@gmail.com">
                             <img src="images/ads.jpg" class="img-fluid"></a>
                         <!-- Pagination -->0
@@ -220,13 +223,20 @@ $stmt->execute();
                                 </p>
                                 <p class="m-0"><small> Posted on 2023-12-30 00:20:09</small></p>
                                 <a href="#" class="card-title text-decoration-none text-dark">
-                                    <h5 class="card-title">وأفادت وزراة الصحة الفلسطينية في قطاع غزة في بيان رسمي اليوم، بارتفاع حصيلة القتلى الفلسطينيين في القطاع جراء الغارات الإسرائيلية إلى 1417 فيما أصيب 6268 آخرون.
+                                    <h5 class="card-title">وأفادت وزراة الصحة الفلسطينية في قطاع غزة في بيان رسمي اليوم،
+                                        بارتفاع حصيلة القتلى الفلسطينيين في القطاع جراء الغارات الإسرائيلية إلى 1417
+                                        فيما أصيب 6268 آخرون.
 
-وأشارت وزارة الصحة الفلسطينية في بيان رسمي، أن بين ضحايا الغارات الإسرائيلية ما يقرب من  447 طفلا و248 امرأة.
+                                        وأشارت وزارة الصحة الفلسطينية في بيان رسمي، أن بين ضحايا الغارات الإسرائيلية ما
+                                        يقرب من 447 طفلا و248 امرأة.
 
-وأعلنت الصحة الفلسطينية في وقت سابق اليوم أن حصيلة قتلى القصف والغارات الإسرائيلية وصلت إلى 1354 والجرحى إلى أكثر من 6049 في غزة، وإلى 31 قتيلا و180 جريحا في الضفة الغربية المحتلة.
+                                        وأعلنت الصحة الفلسطينية في وقت سابق اليوم أن حصيلة قتلى القصف والغارات
+                                        الإسرائيلية وصلت إلى 1354 والجرحى إلى أكثر من 6049 في غزة، وإلى 31 قتيلا و180
+                                        جريحا في الضفة الغربية المحتلة.
 
-ودخلت عملية "طوفان الأقصى" التي أطلقتها حركة "حماس" يومها السادس، وسط تكثيف الجيش الإسرائيلي غاراته على قطاع غزة، وتوسيع رقعة الاستهداف لتشمل جنوب لبنان.</h5>
+                                        ودخلت عملية "طوفان الأقصى" التي أطلقتها حركة "حماس" يومها السادس، وسط تكثيف
+                                        الجيش الإسرائيلي غاراته على قطاع غزة، وتوسيع رقعة الاستهداف لتشمل جنوب لبنان.
+                                    </h5>
                                 </a>
                                 <!-- <a href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>" class="">Read More &rarr;</a> -->
                             </div>
