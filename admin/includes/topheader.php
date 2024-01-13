@@ -76,7 +76,7 @@
                     <ul class="nav navbar-nav" style=" width: 50%; margin-top: 23px; color: red;">
                         <marquee behavior="scroll" direction="left" onmouseover="this.stop();"
                             onmouseout="this.start();"><b>Today Trending News : </b><b> about Gaza & Tofan Alaqsa
-                            in</b> www.TOFAN.com</marquee>
+                                in</b> www.TOFAN.com</marquee>
 
 
                     </ul>
@@ -98,7 +98,7 @@
                                 class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
                                 <li>
 
-                                    <h5>Hi, Mayuri K.</h5>
+                                    <h5>Hi, <?php echo $_POST['username']; ?> </h5>
                                 </li>
 
                                 <li><a href="change-password.php"><i class="ti-settings m-r-5"></i> Change Password</a>
