@@ -1,17 +1,15 @@
 <?php
-   session_start();
-   include('includes/config.php');
-   error_reporting(0);
-   if(strlen($_SESSION['login'])==0)
-   { 
-      header('location:index.php');
-   }
-   else{
+session_start();
+include('includes/config.php');
+error_reporting(0);
+if (strlen($_SESSION['login']) == 0) {
+    header('location:index.php');
+} else {
 ?>
-<?php include('includes/topheader.php');?>
+<?php include('includes/topheader.php'); ?>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <!-- ========== Left Sidebar Start ========== -->
-<?php include('includes/leftsidebar.php');?>
+<?php include('includes/leftsidebar.php'); ?>
 <!-- Left Sidebar End -->
 <!-- ============================================================== -->
 <!-- Start right Content here -->
@@ -56,8 +54,8 @@
                                     <small class="d-block mb-3">In <br></small>
                                     <br>
                                     <br>
-                                    <a href="https://www.facebook.com/profile.php?id=100013402905912&locale=ar_AR" target="a_blank"
-                                        class="btn btn-sm btn-primary">Visit Website</a>
+                                    <a href="https://www.facebook.com/profile.php?id=100013402905912&locale=ar_AR"
+                                        target="a_blank" class="btn btn-sm btn-primary">Visit Website</a>
                                 </div>
                                 <div class="col-md-6">
                                     <img src="assets/images/prize-light.png" width="140" height="150"
@@ -89,27 +87,27 @@
                             <i class="mdi mdi-chart-areaspline widget-one-icon"></i>
                             <div class="wigdet-one-content">
                                 <p class="m-0 text-secondary" title="Statistics">Categories Listed</p>
-                                <?php  $stmt=$con->prepare("SELECT * FROM tblcategory WHERE Is_Active=1");
-                        $stmt->execute();   
-                        $countcat=$stmt->rowCount();  
-                           ?>
-                                <h2><?php echo htmlentities($countcat);?> <small></small></h2>
+                                <?php $stmt = $con->prepare("SELECT * FROM tblcategory WHERE Is_Active=1");
+                                    $stmt->execute();
+                                    $countcat = $stmt->rowCount();
+                                    ?>
+                                <h2><?php echo htmlentities($countcat); ?> <small></small></h2>
                             </div>
                         </div>
                     </div>
                 </a>
                 <!-- end col -->
-                 <a href="manage-users.php">
+                <a href="manage-users.php">
                     <div class="col-lg-2 col-md-2 col-sm-6">
                         <div class="card-box widget-box-one text-center">
                             <i class="ti ti-user"></i>
                             <div class="wigdet-one-content">
                                 <p class="m-0 text-secondary" title="Statistics">users Listed</p>
-                                <?php  $stmt=$con->prepare("SELECT * FROM tbluser ");
-                        $stmt->execute();   
-                        $countcat=$stmt->rowCount();  
-                           ?>
-                                <h2><?php echo htmlentities($countcat);?> <small></small></h2>
+                                <?php $stmt = $con->prepare("SELECT * FROM tbluser ");
+                                    $stmt->execute();
+                                    $countcat = $stmt->rowCount();
+                                    ?>
+                                <h2><?php echo htmlentities($countcat); ?> <small></small></h2>
                             </div>
                         </div>
                     </div>
@@ -120,12 +118,12 @@
                             <i class="mdi mdi-layers widget-one-icon"></i>
                             <div class="wigdet-one-content">
                                 <p class="m-0 text-secondary" title="User This Month">Live News</p>
-                                <?php   $stmt=$con->prepare("SELECT * FROM tblcategory WHERE Is_Active=1");   
-                        $stmt->execute();   
-          
-                        $countposts=$stmt->rowCount();   
-                           ?>
-                                <h2><?php echo htmlentities($countposts);?> <small></small></h2>
+                                <?php $stmt = $con->prepare("SELECT * FROM tblcategory WHERE Is_Active=1");
+                                    $stmt->execute();
+
+                                    $countposts = $stmt->rowCount();
+                                    ?>
+                                <h2><?php echo htmlentities($countposts); ?> <small></small></h2>
                             </div>
                         </div>
                     </div>
@@ -136,11 +134,11 @@
                             <i class="mdi mdi-layers widget-one-icon"></i>
                             <div class="wigdet-one-content">
                                 <p class="m-0 text-secondary" title="User This Month">Listed Subcategories</p>
-                                <?php $stmt=$con->prepare("SELECT * FROM tblsubcategory WHERE Is_Active=1");     
-                                 $stmt->execute();   
-                            $countsubcat=$stmt->rowCount();  
-                           ?>
-                                <h2><?php echo htmlentities($countsubcat);?> <small></small></h2>
+                                <?php $stmt = $con->prepare("SELECT * FROM tblsubcategory WHERE Is_Active=1");
+                                    $stmt->execute();
+                                    $countsubcat = $stmt->rowCount();
+                                    ?>
+                                <h2><?php echo htmlentities($countsubcat); ?> <small></small></h2>
                             </div>
                         </div>
                     </div>
@@ -156,11 +154,11 @@
                      <i class="mdi mdi-layers widget-one-icon"></i>
                      <div class="wigdet-one-content">
                         <p class="m-0 text-uppercase font-600 font-secondary text-overflow" title="User This Month">Trash News</p>
-                        <?php  $stmt=$con->prepare("SELECT * FROM tblposts WHERE Is_Active=1");  
-                            $stmt->execute();              
-                            $countposts=$stmt->rowCount();  
-                  ?>
-                        <h2><?php echo htmlentities($countposts);?> <small></small></h2>
+                        <?php $stmt = $con->prepare("SELECT * FROM tblposts WHERE Is_Active=1");
+                        $stmt->execute();
+                        $countposts = $stmt->rowCount();
+                        ?>
+                        <h2><?php echo htmlentities($countposts); ?> <small></small></h2>
                      </div>
                   </div>
                </div>
@@ -181,31 +179,31 @@
                             </thead>
                             <tbody>
                                 <?php
-                           $stmt=$con->prepare("SELECT tblposts.id AS postid,tblposts.PostTitle AS title,tblcategory.CategoryName AS category,tblsubcategory.Subcategory AS subcategory FROM tblposts LEFT JOIN tblcategory ON tblcategory.id=tblposts.CategoryId left join tblsubcategory ON tblsubcategory.SubCategoryId=tblposts.SubCategoryId WHERE tblposts.Is_Active=1");                                      
-                           $stmt->execute();
-                           $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                           
-                         
-                            if($stmt==0)
-                            {
-                           ?>
+                                    $stmt = $con->prepare("SELECT tblposts.id AS postid,tblposts.PostTitle AS title,tblcategory.CategoryName AS category,tblsubcategory.Subcategory AS subcategory FROM tblposts LEFT JOIN tblcategory ON tblcategory.id=tblposts.CategoryId left join tblsubcategory ON tblsubcategory.SubCategoryId=tblposts.SubCategoryId WHERE tblposts.Is_Active=1");
+                                    $stmt->execute();
+                                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+                                    if ($stmt == 0) {
+                                    ?>
                                 <tr>
                                     <td colspan="4" align="center">
                                         <h3 style="color:red">No record found</h3>
                                     </td>
                                 <tr>
-                                    <?php 
-                              } else {
-                                foreach($result as $row){
-                                    {
-                              ?>
+                                    <?php
+                                        } else {
+                                            foreach ($result as $row) { {
+                                            ?>
                                 <tr>
-                                    <td><?php echo htmlentities($row['title']);?></td>
-                                    <td><?php echo htmlentities($row['category'])?></td>
-                                    <td><?php echo htmlentities($row['subcategory'])?></td>
+                                    <td><?php echo htmlentities($row['title']); ?></td>
+                                    <td><?php echo htmlentities($row['category']) ?></td>
+                                    <td><?php echo htmlentities($row['subcategory']) ?></td>
 
                                 </tr>
-                                <?php } }}?>
+                                <?php }
+                                            }
+                                        } ?>
                             </tbody>
                         </table>
                     </div>
@@ -215,7 +213,6 @@
         <!-- container -->
     </div>
     <!-- content -->
-    <?php include('includes/footer.php');?>
 
 </div>
 <!-- ============================================================== -->
@@ -267,6 +264,8 @@
     </div>
 </div>
 <!-- /Right-bar -->
+<?php include('includes/footer.php'); ?>
+
 </div>
 <!-- END wrapper -->
 <script>

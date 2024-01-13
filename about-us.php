@@ -5,7 +5,7 @@ include('includes/config.php');
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,59 +20,56 @@ include('includes/config.php');
     <!-- Custom styles for this template -->
     <link href="css/modern-business.css" rel="stylesheet">
     <link rel="stylesheet" href="css/icons.css">
-  </head>
+</head>
 
-  <body>
+<body>
 
     <!-- Navigation -->
-    <?php include('includes/header.php');?>
+    <?php include('includes/header.php'); ?>
     <!-- Page Content -->
     <div class="container">
 
-<?php 
-$pagetype='aboutus';
-$stmt=$con->prepare("select PageTitle,Description from tblpages where PageName='$pagetype'"); 
-$stmt->execute(); 
-if ($stmt->rowCount()) {
-foreach ($stmt->fetchAll() as $row)
-{
+        <?php
+    $pagetype = 'aboutus';
+    $stmt = $con->prepare("select PageTitle,Description from tblpages where PageName='$pagetype'");
+    $stmt->execute();
+    if ($stmt->rowCount()) {
+      foreach ($stmt->fetchAll() as $row) {
 
-?>
-      <h1 class="mt-5 mb-3 text-center"><?php echo htmlentities($row['PageTitle'])?>
-  
-      </h1>
+    ?>
+        <h1 class="mt-5 mb-3 text-center"><?php echo htmlentities($row['PageTitle']) ?>
 
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="index.php">Home</a>
-        </li>
-        <li class="breadcrumb-item active">About</li>
-      </ol>
+        </h1>
 
-      <!-- Intro Content -->
-      <div class="row">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="index.php">Home</a>
+            </li>
+            <li class="breadcrumb-item active">About</li>
+        </ol>
 
-        <div class="col-lg-12">
+        <!-- Intro Content -->
+        <div class="row">
 
-          <p><?php echo $row['Description'];?></p>
+            <div class="col-lg-12">
+
+                <p><?php echo $row['Description']; ?></p>
+            </div>
         </div>
-      </div>
-      <!-- /.row -->
-<?php }} ?>
-    
+        <!-- /.row -->
+        <?php }
+    } ?>
+
     </div>
     <!-- /.container -->
 
     <!-- Footer -->
- <?php include('includes/footer.php');?>
-<!--  Author Name: Mayuri K. 
- for any PHP, Codeignitor, Laravel OR Python work contact me at mayuri.infospace@gmail.com  
- Visit website : www.mayurik.com -->  
+    <?php include('includes/footer.php'); ?>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  </body>
+</body>
 
 </html>

@@ -50,9 +50,10 @@ include('includes/config.php');
                                     if ($stmt->rowCount()) {
                                         foreach ($stmt->fetchAll() as $row) {
                                     ?>
-                                            <li class=" mb-2">
-                                                <a href="category.php?catid=<?php echo htmlentities($row['id']) ?>" class="text-secondary"><?php echo htmlentities($row['CategoryName']); ?></a>
-                                            </li>
+                                    <li class=" mb-2">
+                                        <a href="category.php?catid=<?php echo htmlentities($row['id']) ?>"
+                                            class="text-secondary"><?php echo htmlentities($row['CategoryName']); ?></a>
+                                    </li>
                                     <?php }
                                     } ?>
                                 </ul>
@@ -101,46 +102,48 @@ include('includes/config.php');
 
 
                 ?>
-                        <h1><?php echo htmlentities($row['category']); ?> News</h1>
-                        <div class="card mb-4">
-                            <img class="card-img-top" src="admin/postimages/<?php echo htmlentities($row['PostImage']); ?>" alt="<?php echo htmlentities($row['posttitle']); ?>">
-                            <div class="card-body">
-                                <p class="text-right mb-0"><small>Posted on
-                                        <?php echo htmlentities($row['postingdate']); ?></small></p>
+                <h1><?php echo htmlentities($row['category']); ?> News</h1>
+                <div class="card mb-4">
+                    <img class="card-img-top" src="admin/postimages/<?php echo htmlentities($row['PostImage']); ?>"
+                        alt="<?php echo htmlentities($row['posttitle']); ?>">
+                    <div class="card-body">
+                        <p class="text-right mb-0"><small>Posted on
+                                <?php echo htmlentities($row['postingdate']); ?></small></p>
 
-                                <a href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>" class="card-title text-decoration-none text-dark">
-                                    <h2 class="card-title text-dark"><?php echo htmlentities($row['posttitle']); ?></h2>
-                                </a>
+                        <a href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>"
+                            class="card-title text-decoration-none text-dark">
+                            <h2 class="card-title text-dark"><?php echo htmlentities($row['posttitle']); ?></h2>
+                        </a>
 
-                                <a href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>" class="">Read More
-                                    &rarr;</a>
-                            </div>
+                        <a href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>" class="">Read More
+                            &rarr;</a>
+                    </div>
 
-                        </div>
-                    <?php } ?>
+                </div>
+                <?php } ?>
 
-                    <ul class="pagination justify-content-center mb-4">
-                        <li class="page-item"><a href="?pageno=1" class="page-link">First</a></li>
-                        <li class="<?php if ($pageno <= 1) {
+                <ul class="pagination justify-content-center mb-4">
+                    <li class="page-item"><a href="?pageno=1" class="page-link">First</a></li>
+                    <li class="<?php if ($pageno <= 1) {
                                         echo 'disabled';
                                     } ?> page-item">
-                            <a href="<?php if ($pageno <= 1) {
+                        <a href="<?php if ($pageno <= 1) {
                                             echo '#';
                                         } else {
                                             echo "?pageno=" . ($pageno - 1);
                                         } ?>" class="page-link">Prev</a>
-                        </li>
-                        <li class="<?php if ($pageno >= $total_pages) {
+                    </li>
+                    <li class="<?php if ($pageno >= $total_pages) {
                                         echo 'disabled';
                                     } ?> page-item">
-                            <a href="<?php if ($pageno >= $total_pages) {
+                        <a href="<?php if ($pageno >= $total_pages) {
                                             echo '#';
                                         } else {
                                             echo "?pageno=" . ($pageno + 1);
                                         } ?> " class="page-link">Next</a>
-                        </li>
-                        <li class="page-item"><a href="?pageno=<?php echo $total_pages; ?>" class="page-link">Last</a></li>
-                    </ul>
+                    </li>
+                    <li class="page-item"><a href="?pageno=<?php echo $total_pages; ?>" class="page-link">Last</a></li>
+                </ul>
                 <?php } ?>
                 <!-- Pagination -->
             </div>
@@ -154,9 +157,6 @@ include('includes/config.php');
     <!-- /.container -->
 
     <?php include('includes/footer.php'); ?>
-    <!--  Author Name: Mayuri K. 
- for any PHP, Codeignitor, Laravel OR Python work contact me at mayuri.infospace@gmail.com  
- Visit website : www.mayurik.com -->
 
     <script src="js/foot.js"></script>
     <!-- Bootstrap core JavaScript -->

@@ -98,7 +98,7 @@
                                 class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
                                 <li>
 
-                                    <h5>Hi, <?php echo $_POST['username']; ?> </h5>
+                                    <h5>Hi, <?php echo $_SESSION['login']; ?> </h5>
                                 </li>
 
                                 <li><a href="change-password.php"><i class="ti-settings m-r-5"></i> Change Password</a>
