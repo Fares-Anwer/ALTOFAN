@@ -7,21 +7,21 @@
       <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
          <ul class="navbar-nav">
             <li class="nav-item">
-               <a class="nav-link" href="index.php"><i class="fa fa-home"></i> Home</a>
+               <a class="nav-link" href="index.php"><i class="fa fa-home"></i>الرئيسية</a>
             </li>
             <li class="nav-item">
-<a class="nav-link" href="donations.php"><i class="fa fa-leaf"></i> Donations</a>
+<a class="nav-link" href="donations.php"><i class="fa fa-leaf"></i> التبرعات</a>
 
             </li>
             <li class="nav-item">
-               <a class="nav-link" href="index.php"><i class="fa-newspaper-o fa"></i> News</a>
+               <a class="nav-link" href="index.php"><i class="fa-newspaper-o fa"></i> الأخبار</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link" href="contact-us.php"><i class="fa fa-phone"></i> Contact us</a>
+               <a class="nav-link" href="contact-us.php"><i class="fa fa-phone"></i>  تواصل معنا</a>
             </li>
 
             <li>
-               <a class="nav-link" href="about-us.php"><i class="fa fa-info-circle"></i> About</a>
+               <a class="nav-link" href="about-us.php"><i class="fa fa-info-circle"></i> حول  الصفحة</a>
 
             </li>
          </ul>
