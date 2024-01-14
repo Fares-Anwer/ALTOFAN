@@ -15,7 +15,6 @@
                             <ul class="float-left list-unstyled ">
                                 <li class="mb-2"><a class="text-dark" href="#">مجازر غزة</a></li>
                                 <li class="mb-2"><a class="text-dark" href="#">شهداء غزة</a></li>
-                                <li class="mb-2"><a class="text-dark" href="#">الكيان الصهيوني</a></li>
                                 <li class="mb-2"><a class="text-dark" href="#">القدس </a></li>
                                 <li class="mb-2"><a class="text-dark" href="#">سفن إسرائيل</a></li>
                                
@@ -24,10 +23,9 @@
                         <div class="col">
                             <ul class="float-left list-unstyled ">
                                 <li class="mb-2"><a href="#" class="text-dark">الخروج الميداني</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">بس كملت</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">كملت اللي بعقلي كلهن</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">مو أكتب</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">مدري</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">القوات الجوية</a></li>
+                                <li class="mb-2"><a class="text-dark" href="#">الكيان الصهيوني</a></li>
+
                         
                         </div>
                         <div class="col">
@@ -35,8 +33,7 @@
                                 <li class="mb-2"><a href="#" class="text-dark">العرب</a></li>
                                 <li class="mb-2"><a href="#" class="text-dark">اليمن</a></li>
                                 <li class="mb-2"><a href="#" class="text-dark">البحرين</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">سعيد</a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">بس</a></li>
+                                <li class="mb-2"><a href="#" class="text-dark">العدوان على اليمن</a></li>
                                
                             </ul>
                         </div>
@@ -45,7 +42,6 @@
                                 <li class="mb-2"><a href="#" class="text-dark">الطوفان</a></li>
                                 <li class="mb-2"><a href="#" class="text-dark">بداية الحرب</a></li>
                                 <li class="mb-2"><a href="#" class="text-dark">أبو عبيدة </a></li>
-                                <li class="mb-2"><a href="#" class="text-dark">القوات الجوية</a></li>
                                 <li class="mb-2"><a href="#" class="text-dark">رد الشعب الفلسطيني</a></li>
                                 <li class="mb-2"><a href="#" class="text-dark">سفن إٍسرائيل</a></li>
                            
