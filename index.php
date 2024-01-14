@@ -4,7 +4,7 @@ include('includes/config.php');
 
 ?>
 <!DOCTYPE html>
-<html dir="rtl">
+<html lang="ar" dir="rtl">
 
 <head>
     <meta charset="utf-8">
