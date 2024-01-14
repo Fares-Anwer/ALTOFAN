@@ -4,7 +4,6 @@ include('includes/config.php');
 
 ?>
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
 
 <head>
     <meta charset="utf-8">
@@ -180,9 +179,8 @@ include('includes/config.php');
                     </div>
                     <?php }
                     } ?>
-                    <div class="col-md-12"><a href="mailto: Nowdemy@gmail.com">
-                            <img src="images/ads.jpg" class="img-fluid"></a>
-                        <!-- Pagination -->0
+                    <div class="col-md-12">
+                        <!-- Pagination -->
 
                         <!-- <ul class="pagination justify-content-center mb-4">
                         <li class="page-item"><a href="?pageno=1"  class="page-link border-0">First</a></li>
@@ -210,8 +208,7 @@ include('includes/config.php');
                     <!-- Static -->
                     <div class="col-md-12">
                         <div class="card mb-4 mt-5 border-0">
-                            <img class="card-img-top" src="admin/postimages/8bc5c30be91dca9d07c1db858c60e39f.jpg" alt=""
-                                width="100%">
+                            <img class="card-img-top" src="admin/postimages/TOFF.jpg" alt="" width="100%">
                             <div class="card-body">
                                 <p class="m-0">
                                     <!--category-->
