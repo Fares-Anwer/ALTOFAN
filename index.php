@@ -1,10 +1,9 @@
 <?php
 session_start();
 include('includes/config.php');
-
 ?>
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" >
 
 <head>
     <meta charset="utf-8">
@@ -19,12 +18,10 @@ include('includes/config.php');
         body{
 text-align: ltr;
         }
-        .rtlas{
-            text-align: left;
 
-        }
      
     </style>
+    <link rel="stylesheet" href="css/st.css">
     <link href="css/modern-business.css" rel="stylesheet">
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -42,7 +39,7 @@ text-align: ltr;
             <!-- Blog Entries Column -->
             <?php include('includes/sidebar.php'); ?>
             <div class="col-md-7">
-                <h4 class="widget-title mb-4">آخر<span>الأخبار</span></h4>
+                <h4 class="widget-title mb-4">آخر <span>الأخبار</span></h4>
                 <!-- Blog Post -->
                 <div class="row">
                     <div class="owl-carousel owl-theme" id="slider">
