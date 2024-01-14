@@ -1,5 +1,5 @@
 <footer class="footer text-center">
-    <!-- <?php echo date('Y'); ?> © Developed by. -->
+    <?php echo date('Y'); ?> © Developed by.
     Footer
 </footer>
 </div>
