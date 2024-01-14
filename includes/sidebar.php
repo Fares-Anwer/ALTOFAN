@@ -3,7 +3,7 @@
     <!-- <h4 class="widget-title mb-5">Don't <span>Miss</span></h4> -->
 
     <div class="card mb-4 border-0">
-        <h5 class="card-header border-0 bg-white">Search</h5>
+        <h5 class="card-header border-0 bg-white">بحث</h5>
         <div class="card-body">
             <form name="search" action="search.php" method="post">
                 <div class="input-group">
@@ -19,7 +19,7 @@
 
 <!-- Side Widget -->
 <div class="card my-4 border-0">
-    <h5 class="card-header border-0 bg-white">Recent News</h5>
+    <h5 class="card-header border-0 bg-white"> آخرالأخبار</h5>
     <div class="card-body">
         <ul class="mb-0 list-unstyled">
             <?php
@@ -42,7 +42,7 @@
 </div>
 <!-- Side Widget -->
 <div class="card my-4 border-0">
-    <h5 class="card-header border-0 bg-white">Popular News</h5>
+    <h5 class="card-header border-0 bg-white"> الأخبار المتصدرة</h5>
     <div class="card-body">
         <ul class="list-unstyled">
             <?php
@@ -63,7 +63,7 @@
 </div>
 <!-- Side Widget -->
 <div class="card my-4 border-0">
-    <h5 class="card-header border-0 bg-white">Top Trending</h5>
+    <h5 class="card-header border-0 bg-white">آخر الأنباء </h5>
     <div class="card-body">
         <ul class="mb-0 list-unstyled">
             <?php

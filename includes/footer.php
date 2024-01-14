@@ -1,3 +1,4 @@
+<div align="right">
 <div class="footer-area pt-3 bg-white mb-5">
                 <div class="container-fluid">
                     <div class="row">
@@ -58,6 +59,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
              <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
         <script type="text/javascript">

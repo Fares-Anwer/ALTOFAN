@@ -15,6 +15,16 @@ include('includes/config.php');
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
+    <style>
+        body{
+text-align: ltr;
+        }
+        .rtlas{
+            text-align: left;
+
+        }
+     
+    </style>
     <link href="css/modern-business.css" rel="stylesheet">
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -30,49 +40,22 @@ include('includes/config.php');
     <div class="container-fluid">
         <div class="row" style="margin-top: 4%">
             <!-- Blog Entries Column -->
-            <div class="col-md-2 mt-4">
-                <!-- Categories Widget -->
-                <div class="card my-4 border-0">
-                    <h5 class="card-header bg-white border-0">Categories</h5>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <ul class="list-unstyled mb-0">
-                                    <?php
-
-                                    $stmt = $con->prepare("select id,CategoryName from tblcategory");
-                                    $stmt->execute();
-                                    $cnt = 1;
-                                    if ($stmt->rowCount()) {
-                                        foreach ($stmt->fetchAll() as $row) {
-                                    ?>
-                                    <li class=" mb-2">
-                                        <a href="category.php?catid=<?php echo htmlentities($row['id']) ?>"
-                                            class="text-secondary"><?php echo htmlentities($row['CategoryName']); ?></a>
-                                    </li>
-                                    <?php }
-                                    } ?>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php include('includes/sidebar.php'); ?>
             <div class="col-md-7">
-                <h4 class="widget-title mb-4">TOP <span>TRAND</span></h4>
+                <h4 class="widget-title mb-4">آخر<span>الأخبار</span></h4>
                 <!-- Blog Post -->
                 <div class="row">
                     <div class="owl-carousel owl-theme" id="slider">
                         <div class="card mb-4 border-0">
                             <img class="card-img-top" src="admin/postimages/TOF.jpg" alt="" width="100%">
-                            <div class="card-body">
+                            <div align="right" class="card-body">
                                 <p class="m-0">
                                     <!--category-->
                                     <a class="badge bg-success text-decoration-none link-light" href="#"
-                                        style="color:#fff">news</a>
+                                        style="color:#fff">أخبار</a>
                                     <!--Subcategory--->
                                     <a class="badge bg-warning text-decoration-none link-light"
-                                        style="color:#fff">news</a>
+                                        style="color:#fff">أخبار</a>
                                 </p>
                                 <p class="m-0"><small> Posted on 2023-9-7 09:20:09</small></p>
                                 <a href="#" class="card-title text-decoration-none text-dark">
@@ -91,10 +74,10 @@ include('includes/config.php');
                                 <p class="m-0">
                                     <!--category-->
                                     <a class="badge bg-success text-decoration-none link-light" href="#"
-                                        style="color:#fff">news</a>
+                                        style="color:#fff">أخبار</a>
                                     <!--Subcategory--->
                                     <a class="badge bg-warning text-decoration-none link-light"
-                                        style="color:#fff">news</a>
+                                        style="color:#fff">أخبار</a>
                                 </p>
                                 <p class="m-0"><small> Posted on 2023-11-11 00:20:09</small></p>
                                 <a href="#" class="card-title text-decoration-none text-dark">
@@ -112,10 +95,10 @@ include('includes/config.php');
                                 <p class="m-0">
                                     <!--category-->
                                     <a class="badge bg-success text-decoration-none link-light" href="#"
-                                        style="color:#fff">news</a>
+                                        style="color:#fff">أخبار</a>
                                     <!--Subcategory--->
                                     <a class="badge bg-warning text-decoration-none link-light"
-                                        style="color:#fff">news</a>
+                                        style="color:#fff">أخبار</a>
                                 </p>
                                 <p class="m-0"><small> Posted on 2023-12-11 00:20:09</small></p>
                                 <a href="#" class="card-title text-decoration-none text-dark">منذ صباح السبت، أعلن
@@ -214,10 +197,10 @@ include('includes/config.php');
                                 <p class="m-0">
                                     <!--category-->
                                     <a class="badge bg-success text-decoration-none link-light" href="#"
-                                        style="color:#fff">Gaza</a>
+                                        style="color:#fff">غزة</a>
                                     <!--Subcategory--->
                                     <a class="badge bg-warning text-decoration-none link-light"
-                                        style="color:#fff">Gaza</a>
+                                        style="color:#fff">غزة</a>
                                 </p>
                                 <p class="m-0"><small> Posted on 2023-12-30 00:20:09</small></p>
                                 <a href="#" class="card-title text-decoration-none text-dark">
@@ -245,7 +228,34 @@ include('includes/config.php');
 
             </div>
             <!-- Sidebar Widgets Column -->
-            <?php include('includes/sidebar.php'); ?>
+            <div class="col-md-2 mt-4">
+                <!-- Categories Widget -->
+                <div class="card my-4 border-0">
+                    <h5 class="card-header bg-white border-0">الفئات</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="list-unstyled mb-0">
+                                    <?php
+
+                                    $stmt = $con->prepare("select id,CategoryName from tblcategory");
+                                    $stmt->execute();
+                                    $cnt = 1;
+                                    if ($stmt->rowCount()) {
+                                        foreach ($stmt->fetchAll() as $row) {
+                                    ?>
+                                    <li class=" mb-2">
+                                        <a href="category.php?catid=<?php echo htmlentities($row['id']) ?>"
+                                            class="text-secondary"><?php echo htmlentities($row['CategoryName']); ?></a>
+                                    </li>
+                                    <?php }
+                                    } ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- /.row -->
         </div>
         <!-- /.container -->
