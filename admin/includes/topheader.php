@@ -103,8 +103,16 @@
 
                                 <li><a href="change-password.php"><i class="ti-settings m-r-5"></i> Change Password</a>
                                 </li>
-                                <li><a href="editingProfile.php"><i class="ti-settings m-r-5"></i>Edit Profile</a>
-                                </li>
+                                <li>
+                                <?php
+                                $stmt = $con->prepare("Select * from  tbladmin");
+                              $stmt->execute();
+                              if ($stmt->rowCount()) {
+                               ?> 
+                                    
+                                <a href="editingProfile.php?uname=<?php echo htmlentities($row['AdminUserName']); ?>" class="ti-settings m-r-5">Edit Profile<i></i></a>                              
+                                <?php }?>
+                            </li>
 
                                 <li><a href="logout.php"><i class="ti-power-off m-r-5"></i> Logout</a></li>
                             </ul>

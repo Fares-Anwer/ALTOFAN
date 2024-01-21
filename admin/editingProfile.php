@@ -6,6 +6,8 @@ if(strlen($_SESSION['login'])==0){
     header('location:index.php');
 }else{
     if(isset($_POST['button'])){
+
+
      
 
     }
@@ -106,23 +108,32 @@ color:#69707a;
 <div class="card mb-4">
 <div class="card-header">Account Details</div>
 <div class="card-body">
-<form>
+     <?php 
+                              $aid=intval($_GET['said']);
+                              $stmt=$con->prepare("Select * from  tbladmin where userType=0 && id='$aid'"); 
+                              $stmt->execute(); 
+                            $cnt=1;
+                        if ($stmt->rowCount()) {
+                             foreach ($stmt->fetchAll() as $row)
+                              {
+                              ?>
+<form name="login">
 
 <div class="mb-3">
 <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-<input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="username">
+<input class="form-control" id="inputUsername" type="text" value=<?php echo htmlentities($row['AdminUserName']);?>>
 </div>
 
 <div class="row gx-3 mb-3">
 
 <div class="col-md-6">
 <label class="small mb-1" for="inputFirstName">First name</label>
-<input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="first name">
+<input class="form-control" id="inputFirstName" type="text" value=<?php echo htmlentities($row['AdminUserName']);?>>
 </div>
 
 <div class="col-md-6">
 <label class="small mb-1" for="inputLastName">Last name</label>
-<input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="last name">
+<input class="form-control" id="inputLastName" type="text"  value=<?php echo htmlentities($row['AdminEmailId']);?>>
 </div>
 </div>
 
@@ -133,7 +144,7 @@ color:#69707a;
 
 <div class="mb-3">
 <label class="small mb-1" for="inputEmailAddress">Email address</label>
-<input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com">
+<input class="form-control" id="inputEmailAddress" type="email"value="name@example.com">
 </div>
 
 <div class="row gx-3 mb-3">

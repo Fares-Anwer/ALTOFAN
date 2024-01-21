@@ -7,14 +7,14 @@
    header('location:index.php');
    }
    else{
-   if(isset($_POST['sucatdescription']))
+   if(isset($_POST['submitsubcat']))
    {
    $subcatid=intval($_GET['scid']);    
    $categoryid=$_POST['category'];
    $subcatname=$_POST['subcategory'];
    $subcatdescription=$_POST['sucatdescription'];
-   $stmt=$con->prepare("update tblsubcategory set CategoryId='?',Subcategory='?',SubCatDescription='?' where SubCategoryId='?'");   
-   $stmt->execute(array($categoryid,$subcatname,$subcatdescription,$subcatid));  
+   $stmt=$con->prepare("update tblsubcategory set CategoryId='$categoryid',Subcategory='$subcatname',SubCatDescription='$subcatdescription' where SubCategoryId='$subcatid'");   
+   $stmt->execute();  
    if($stmt)
    {
    $msg="Sub-Category created ";
@@ -39,7 +39,7 @@
                   <div class="row">
                      <div class="col-xs-12">
                         <div class="page-title-box">
-                           <h4 class="page-title">Add Sub-Category</h4>
+                           <h4 class="page-title">edit Sub-Category</h4>
                            <ol class="breadcrumb p-0 m-0">
                               <li>
                                  <a href="#">Admin</a>
@@ -48,7 +48,7 @@
                                  <a href="#">Category </a>
                               </li>
                               <li class="active">
-                                 Add Sub-Category
+                                 edit Sub-Category
                               </li>
                            </ol>
                            <div class="clearfix"></div>
@@ -59,7 +59,7 @@
                   <div class="row">
                      <div class="col-sm-12">
                         <div class="card-box">
-                           <h4 class="m-t-0 header-title"><b>Add Sub-Category </b></h4>
+                           <h4 class="m-t-0 header-title"><b>edit Sub-Category </b></h4>
                            <hr />
                            <div class="row">
                               <div class="col-sm-6">
