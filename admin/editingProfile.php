@@ -91,11 +91,13 @@ color:#69707a;
 <div class="card-header">Profile Picture</div>
 <div class="card-body text-center">
 
-<img class="img-account-profile rounded-circle mb-2" src="assets/images/users/avatar-1.jpg" alt>
+<img class="img-account-profile rounded-circle mb-2" src="assets/images/users/170.jpg" alt>
 
 <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
 
-<button class="btn btn-primary" type="button">Upload new image</button>
+<button class="btn btn-primary" type="button" ><form action="">
+    <input type="file">
+</form></button>
 </div>
 </div>
 </div>

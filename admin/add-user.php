@@ -15,7 +15,8 @@ if (strlen($_SESSION['login']) == 0) {
       $phone = $_POST['phone'];
       $userid = $_POST['userid'];
       $gender = $_POST['gender'];
-      $stmt = $con->prepare("insert into tbluser(name,email,password,phone,username,gender ) values('$fname','$email','$password','$phone','$uname','$gender')");
+      $photo=$_POST['userigme'];
+      $stmt = $con->prepare("insert into tbluser(name,email,password,phone,username,gender,user_profile ) values('$fname','$email','$password','$phone','$uname','$gender','$photo')");
       $stmt->execute();
       if ($stmt) {
          echo "<script>alert('user details added successfully.');</script>";
@@ -101,6 +102,14 @@ if (strlen($_SESSION['login']) == 0) {
                                     <input class="form-control" id="phone" placeholder="Contact" type="text"
                                         name="phone" required="true">
                                 </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                       <div class="card-box">
+                                          <h4 class="m-b-30 m-t-0 header-title"><b>profile Image</b></h4>
+                                          <input type="file" class="form-control" id="userigme" name="userigme" >
+                                       </div>
+                                    </div>
+                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-md-12">

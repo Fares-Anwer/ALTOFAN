@@ -12,7 +12,8 @@ if (strlen($_SESSION['login']) == 0) {
       $email = $_POST['emailid'];
       $password = md5($_POST['pwd']);
       $usertype = '0';
-      $stmt = $con->prepare("insert into tbladmin(AdminUserName,AdminEmailId,AdminPassword,userType ) values('$username','$email','$password','$usertype')");
+      $photo=$_POST['userigme'];
+      $stmt = $con->prepare("insert into tbladmin(AdminUserName,AdminEmailId,AdminPassword,userType,profile_imge ) values('$username','$email','$password','$usertype','$photo')");
       $stmt->execute();
       if ($stmt) {
          echo "<script>alert('Sub-admin details added successfully.');</script>";
@@ -74,6 +75,14 @@ if (strlen($_SESSION['login']) == 0) {
                               <label for="password">Password</label>
                               <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter password" required>
                            </div>
+                           <div class="row">
+                                    <div class="col-sm-12">
+                                       <div class="card-box">
+                                          <h4 class="m-b-30 m-t-0 header-title"><b>profile Image</b></h4>
+                                          <input type="file" class="form-control" id="userigme" name="userigme" >
+                                       </div>
+                                    </div>
+                                 </div>
                            <div class="form-group">
                               <div class="col-md-12">
                                  <button type="submit" class="btn btn-custom waves-effect waves-light btn-md" id="submit" name="submit">
