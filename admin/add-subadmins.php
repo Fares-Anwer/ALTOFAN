@@ -21,7 +21,7 @@ if (strlen($_SESSION['login']) == 0) {
       // $extension = substr($imgfile, strlen($imgfile) - 4, strlen($imgfile));
       $extension = strtolower(pathinfo($imgfile, PATHINFO_EXTENSION));
       // allowed extensions
-      $allowed_extensions = array("jpg", "jpeg", "png", "gif");
+      $allowed_extensions = array(".jpg", ".jpeg", ".png", ".gif");
       // Validation for allowed extensions .in_array() function searches an array for a specific value.
       if ($extension != "jpg" && $extension != "png" && $extension != "jpeg" && $extension != "gif") {
          echo "<script>alert('Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
@@ -29,8 +29,8 @@ if (strlen($_SESSION['login']) == 0) {
          //rename the image file
          $imgnewfile = md5($imgfile) . $extension;
          // Code for move image into directory
-         move_uploaded_file($_FILES["userigme"]["tmp_name"], "login/profilephoto" . $imgnewfile);
-         $stmt = $con->prepare("insert into tbladmin(AdminUserName,AdminEmailId,AdminPassword,userType,profile_imge ) values('$username','$email','$password','$usertype','$photo')");
+         move_uploaded_file($_FILES["userigme"]["tmp_name"], "login/profilephoto/" . $imgnewfile);
+         $stmt = $con->prepare("insert into tbladmin(AdminUserName,AdminEmailId,AdminPassword,userType,profile_imge ) values('$username','$email','$password','$usertype','$imgnewfile')");
          $stmt->execute();
          if ($stmt) {
             echo "<script>alert('Sub-admin details added successfully.');</script>";

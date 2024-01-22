@@ -165,8 +165,8 @@ if (strlen($_SESSION['login']) == 0) {
 
 
 
-                                            <button class="btn btn-primary" type="button" style="margin: 5px;">Save
-                                                changes</button>
+                                            <input class="btn btn-primary" type="button" name="button" style="margin: 5px;">Save
+                                                changes</input>
                                 </form>
                         <?php }
                         } ?>
