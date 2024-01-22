@@ -3,7 +3,8 @@
 <?php
 session_start();
 include('includes/config.php');
-error_reporting(0);?>
+error_reporting(0); ?>
+
 <head>
     <title>ALTOFAN</title>
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
@@ -29,34 +30,37 @@ error_reporting(0);?>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
     <script>
-    function checkAvailability() {
-        $("#loaderIcon").show();
-        jQuery.ajax({
-            url: "check_availability.php",
-            data: 'username=' + $("#sadminusername").val(),
-            type: "POST",
-            success: function(data) {
-                $("#user-availability-status").html(data);
-                $("#loaderIcon").hide();
-            },
-            error: function() {}
-        });
-    }
+        function checkAvailability() {
+            $("#loaderIcon").show();
+            jQuery.ajax({
+                url: "check_availability.php",
+                data: 'username=' + $("#sadminusername").val(),
+                type: "POST",
+                success: function(data) {
+                    $("#user-availability-status").html(data);
+                    $("#loaderIcon").hide();
+                },
+                error: function() {}
+            });
+        }
     </script>
 </head>
 <?php
-                       $user_name= $_SESSION['login'];
-                        $stmt = $con->prepare("SELECT profile_imge FROM `tbladmin` WHERE AdminUserName=:user_name");
-                        $stmt->bindParam(':user_name', $user_name);
-                      $stmt->execute();
-                      $cout= $stmt->rowCount();
-                      $user_photo = $stmt->fetchColumn();
-                      if (empty($user_photo)) {
-                        // Set default/placeholder image path
-                        $user_photo = 'assets/images/avatar-1.jpg';
-                    }
-                        
-                        ?>
+$user_name = $_SESSION['login'];
+$stmt = $con->prepare("SELECT profile_imge FROM `tbladmin` WHERE AdminUserName=:user_name");
+$stmt->bindParam(':user_name', $user_name);
+$stmt->execute();
+$cout = $stmt->rowCount();
+$user_photo = $stmt->fetchColumn();
+if (empty($user_photo)) {
+    // Set default/placeholder image path
+    $user_photo = 'assets/images/avatar-1.jpg';
+} else {
+    $temp = "../Login/profilephoto/" . $user_photo;
+    $user_photo = $temp;
+}
+
+?>
 
 <body class="fixed-left">
     <!-- Begin page -->
@@ -90,8 +94,7 @@ error_reporting(0);?>
 
                     </ul>
                     <ul class="nav navbar-nav" style=" width: 50%; margin-top: 23px; color: red;">
-                        <marquee behavior="scroll" direction="left" onmouseover="this.stop();"
-                            onmouseout="this.start();"><b>Today Trending News : </b><b> about Gaza & Tofan Alaqsa
+                        <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"><b>Today Trending News : </b><b> about Gaza & Tofan Alaqsa
                                 in</b> www.TOFAN.com</marquee>
 
 
@@ -102,16 +105,14 @@ error_reporting(0);?>
                     </div>
                     <!-- Right(Notification) -->
                     <ul class="nav navbar-nav navbar-right">
-                    
+
 
                         <li class="dropdown user-box">
-                            <a href="" class="dropdown-toggle waves-effect user-link" data-toggle="dropdown"
-                                aria-expanded="true">
-                                <img src="../Login/profilephoto/<?php echo $user_photo ?>"  class="img-circle user-img">
+                            <a href="" class="dropdown-toggle waves-effect user-link" data-toggle="dropdown" aria-expanded="true">
+                                <img src="<?php echo $user_photo ?>" class="img-circle user-img">
                             </a>
 
-                            <ul
-                                class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
+                            <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
                                 <li>
 
                                     <h5>Hi, <?php echo $user_name; ?> </h5>
@@ -120,15 +121,15 @@ error_reporting(0);?>
                                 <li><a href="change-password.php"><i class="ti-settings m-r-5"></i> Change Password</a>
                                 </li>
                                 <li>
-                                <?php
-                                $stmt = $con->prepare("Select * from  tbladmin");
-                              $stmt->execute();
-                              if ($stmt->rowCount()) {
-                               ?> 
-                                    
-                                <a href="editingProfile.php?uname=<?php echo htmlentities($row['AdminUserName']); ?>" class="ti-settings m-r-5">Edit Profile<i></i></a>                              
-                                <?php }?>
-                            </li>
+                                    <?php
+                                    $stmt = $con->prepare("Select * from  tbladmin");
+                                    $stmt->execute();
+                                    if ($stmt->rowCount()) {
+                                    ?>
+
+                                        <a href="editingProfile.php?uname=<?php echo htmlentities($row['AdminUserName']); ?>" class="ti-settings m-r-5">Edit Profile<i></i></a>
+                                    <?php } ?>
+                                </li>
 
                                 <li><a href="logout.php"><i class="ti-power-off m-r-5"></i> Logout</a></li>
                             </ul>

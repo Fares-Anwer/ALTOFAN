@@ -129,7 +129,7 @@ if (strlen($_SESSION['login']) == 0) {
                     </div>
                 </a>
                 <a href="manage-subcategories.php">
-                    <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="col-lg-2 col-md-2 col-sm-6">
                         <div class="card-box widget-box-one text-center">
                             <i class="mdi mdi-layers widget-one-icon"></i>
                             <div class="wigdet-one-content">
