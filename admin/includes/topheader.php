@@ -50,7 +50,7 @@ $user_name = $_SESSION['login'];
 $stmt = $con->prepare("SELECT profile_imge FROM `tbladmin` WHERE AdminUserName=:user_name");
 $stmt->bindParam(':user_name', $user_name);
 $stmt->execute();
-$cout = $stmt->rowCount();
+// $cout = $stmt->rowCount();
 $user_photo = $stmt->fetchColumn();
 if (empty($user_photo)) {
     // Set default/placeholder image path

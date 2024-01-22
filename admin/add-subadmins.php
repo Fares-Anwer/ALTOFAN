@@ -12,110 +12,119 @@ if (strlen($_SESSION['login']) == 0) {
       $email = $_POST['emailid'];
       $password = md5($_POST['pwd']);
       $usertype = '0';
-      $imgfile=$_FILES["userigme"];
-      
+      // $imgfile = $_FILES["userigme"];
+
+      $target_dir = "login/profilephoto/";
+      $imgfile = $target_dir . basename($_FILES["userigme"]["name"]);
+
       // get the image extension
-      $extension = substr($imgfile,strlen($imgfile)-4,strlen($imgfile));
+      // $extension = substr($imgfile, strlen($imgfile) - 4, strlen($imgfile));
+      $extension = strtolower(pathinfo($imgfile, PATHINFO_EXTENSION));
       // allowed extensions
-      $allowed_extensions = array("jpg","jpeg","png","gif");
+      $allowed_extensions = array("jpg", "jpeg", "png", "gif");
       // Validation for allowed extensions .in_array() function searches an array for a specific value.
-      if(!in_array($extension,$allowed_extensions))
-      {
-      echo "<script>alert('Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
-      }
-      else
-      {
-      //rename the image file
-      $imgnewfile=md5($imgfile).$extension;
-      // Code for move image into directory
-      move_uploaded_file($_FILES["userigme"]["tmp_name"],"login/profilephoto".$imgnewfile);
-      $stmt = $con->prepare("insert into tbladmin(AdminUserName,AdminEmailId,AdminPassword,userType,profile_imge ) values('$username','$email','$password','$usertype','$photo')");
-      $stmt->execute();
-      if ($stmt) {
-         echo "<script>alert('Sub-admin details added successfully.');</script>";
-         echo "<script type='text/javascript'> document.location = 'add-subadmins; </script>";
+      if ($extension != "jpg" && $extension != "png" && $extension != "jpeg" && $extension != "gif") {
+         echo "<script>alert('Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
       } else {
-         echo "<script>alert('Something went wrong. Please try again.');</script>";
+         //rename the image file
+         $imgnewfile = md5($imgfile) . $extension;
+         // Code for move image into directory
+         move_uploaded_file($_FILES["userigme"]["tmp_name"], "login/profilephoto" . $imgnewfile);
+         $stmt = $con->prepare("insert into tbladmin(AdminUserName,AdminEmailId,AdminPassword,userType,profile_imge ) values('$username','$email','$password','$usertype','$photo')");
+         $stmt->execute();
+         if ($stmt) {
+            echo "<script>alert('Sub-admin details added successfully.');</script>";
+            echo "<script type='text/javascript'> document.location = 'add-subadmins; </script>";
+         } else {
+            echo "<script>alert('Something went wrong. Please try again.');</script>";
+         }
       }
-   }}
+   }
 
 ?>
 
 
-   <?php include('includes/topheader.php'); ?>
-   <!-- Top Bar End -->
-   <!-- ========== Left Sidebar Start ========== -->
-   <?php include('includes/leftsidebar.php'); ?>
-   <!-- Left Sidebar End -->
-   <div class="content-page">
-      <!-- Start content -->
-      <div class="content">
-         <div class="container">
+<?php include('includes/topheader.php'); ?>
+<!-- Top Bar End -->
+<!-- ========== Left Sidebar Start ========== -->
+<?php include('includes/leftsidebar.php'); ?>
+<!-- Left Sidebar End -->
+<div class="content-page">
+    <!-- Start content -->
+    <div class="content">
+        <div class="container">
             <div class="row">
-               <div class="col-xs-12">
-                  <div class="page-title-box">
-                     <h4 class="page-title">Add Subadmin</h4>
-                     <ol class="breadcrumb p-0 m-0">
-                        <li>
-                           <a href="#">Admin</a>
-                        </li>
-                        <li>
-                           <a href="#">Subadmin </a>
-                        </li>
-                        <li class="active">
-                           Add Subadmin
-                        </li>
-                     </ol>
-                     <div class="clearfix"></div>
-                  </div>
-               </div>
+                <div class="col-xs-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Add Subadmin</h4>
+                        <ol class="breadcrumb p-0 m-0">
+                            <li>
+                                <a href="#">Admin</a>
+                            </li>
+                            <li>
+                                <a href="#">Subadmin </a>
+                            </li>
+                            <li class="active">
+                                Add Subadmin
+                            </li>
+                        </ol>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
             </div>
             <!-- end row -->
             <div class="row">
-               <div class="col-sm-12">
-                  <div class="card-box">
-                     <h4 class="m-t-0 header-title"><b>Add Subadmin </b></h4>
-                     <hr />
-                     <div class="row">
-                        <form class="row" name="addsuadmin" method="post">
-                           <div class="form-group col-md-6">
-                              <label for="exampleInputusername">Username (used for login)</label>
-                              <input type="text" placeholder="Enter Sub-Admin Username" name="sadminusername" id="sadminusername" class="form-control" pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" title="Username must be alphanumeric 6 to 12 chars" onBlur="checkAvailability()" required>
-                              <span id="user-availability-status" style="font-size:14px;"></span>
-                           </div>
-                           <div class="form-group col-md-6">
-                              <label for="emailid">Email Id</label>
-                              <input type="email" class="form-control" id="emailid" name="emailid" placeholder="Enter email" required>
-                           </div>
-                           <div class="form-group col-md-6">
-                              <label for="password">Password</label>
-                              <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter password" required>
-                           </div>
-                           <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-box">
+                        <h4 class="m-t-0 header-title"><b>Add Subadmin </b></h4>
+                        <hr />
+                        <div class="row">
+                            <form class="row" name="addsuadmin" method="post" enctype="multipart/form-data">
+                                <div class="form-group col-md-6">
+                                    <label for="exampleInputusername">Username (used for login)</label>
+                                    <input type="text" placeholder="Enter Sub-Admin Username" name="sadminusername"
+                                        id="sadminusername" class="form-control"
+                                        pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$"
+                                        title="Username must be alphanumeric 6 to 12 chars" onBlur="checkAvailability()"
+                                        required>
+                                    <span id="user-availability-status" style="font-size:14px;"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="emailid">Email Id</label>
+                                    <input type="email" class="form-control" id="emailid" name="emailid"
+                                        placeholder="Enter email" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="pwd" name="pwd"
+                                        placeholder="Enter password" required>
+                                </div>
+                                <div class="row">
                                     <div class="col-sm-12">
-                                       <div class="card-box">
-                                          <h4 class="m-b-30 m-t-0 header-title"><b>profile Image</b></h4>
-                                          <input type="file" class="form-control" id="userigme" name="userigme" >
-                                       </div>
+                                        <div class="card-box">
+                                            <h4 class="m-b-30 m-t-0 header-title"><b>profile Image</b></h4>
+                                            <input type="file" class="form-control" id="userigme" name="userigme">
+                                        </div>
                                     </div>
-                                 </div>
-                           <div class="form-group">
-                              <div class="col-md-12">
-                                 <button type="submit" class="btn btn-custom waves-effect waves-light btn-md" id="submit" name="submit">
-                                    Submit</button>
-                              </div>
-                           </div>
-                        </form>
-                     </div>
-                  </div>
-               </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-custom waves-effect waves-light btn-md"
+                                            id="submit" name="submit">
+                                            Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- end row -->
-         </div>
-         <!-- container -->
-      </div>
-      <!-- content -->
-      <?php include('includes/footer.php'); ?>
+        </div>
+        <!-- container -->
+    </div>
+    <!-- content -->
+    <?php include('includes/footer.php'); ?>
 
 
-   <?php } ?>
+    <?php } ?>
