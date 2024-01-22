@@ -1,157 +1,131 @@
 <?php
 session_start();
-include('includes/config.php');
 error_reporting(0);
-if(strlen($_SESSION['login'])==0){ 
+include('includes/config.php');
+if (strlen($_SESSION['login']) == 0) {
     header('location:index.php');
-}else{
-    if(isset($_POST['submit'])){
-        //Current Password hashing 
-        $password=$_POST['password'];
-        $options = ['cost' => 12];
-        $hashedpass=password_hash($password, PASSWORD_BCRYPT, $options);
-        $adminid=$_SESSION['login'];
-        // new password hashing 
-        $newpassword=$_POST['newpassword'];
-        $newhashedpass=password_hash($newpassword, PASSWORD_BCRYPT, $options);
+} else {
+  
+if(isset($_POST['submit']))
+{
+    $user=$_SESSION['login'];
+  $username=$_POST['username'];
+$password=md5($_POST['newpassword']);
+                          $stmt=$con->prepare("select id from tbladmin where AdminUserName='$user' "); 
+                            $stmt->execute(); 
 
-        date_default_timezone_set('Asia/Kolkata');// change according timezone
-        $currentTime = date( 'd-m-Y h:i:s A', time () );
+                           $ret= $stmt->rowCount();   
+  if($ret>0){
+      $stmt1=$con->prepare("update tbladmin set AdminPassword='$password'  where AdminUserName='$username' "); 
+                            $stmt1->execute(); 
+     if($stmt1)
+ {
+echo "<script>alert('Password successfully changed');</script>";
+echo "<script type='text/javascript'> document.location = 'dashboard.php'; </script>";
 
-        $adminStmt = $con->prepare("SELECT AdminPassword FROM tbladmin WHERE AdminUserName = :adminid OR AdminEmailId = :adminid");
-        $adminStmt->bindParam(':adminid', $adminid);
-        $adminStmt->execute();
-    
-        // Fetch the admin password
-        $adminRow = $adminStmt->fetch();
-        if ($adminRow) {
-            $dbpassword = $adminRow['AdminPassword'];
-    
-            // Verify the password
-            if (password_verify($password, $dbpassword)) {
-                // Prepare the statement to update the password
-                $updateStmt = $con->prepare("UPDATE tbladmin SET AdminPassword = :newhashedpass, updationDate = :currentTime WHERE AdminUserName = :adminid");
-                $updateStmt->bindParam(':newhashedpass', $newhashedpass);
-                $updateStmt->bindParam(':currentTime', $currentTime);
-                $updateStmt->bindParam(':adminid', $adminid);
-                $updateStmt->execute();
-    
-                $msg = "Password Changed Successfully !!";
-            } else {
-                $error = "Old Password not match !!";
-            }
-        } else {
-            $error = "Invalid admin credentials";
-        }
-    }
+ }
+   
+  }
+  else{
+  
+    echo "<script>alert('Invalid Details. Please try again.');</script>";
+  }
+}
 
 ?>
 
-<?php include('includes/topheader.php');?>
-<!-- Top Bar End -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ALTOFAN.">
+    <meta name="author" content="xyz">
+    <title>ALTOFAN | Password</title>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/core.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/components.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/pages.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/menu.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/responsive.css" rel="stylesheet" type="text/css"/>
+    <script src="assets/js/modernizr.min.js"></script>
+    <script type="text/javascript">
+        function checkpass() {
+            if (document.changepassword.newpassword.value != document.changepassword.confirmpassword.value) {
+                alert('New Password and Confirm Password field does not match');
+                document.changepassword.confirmpassword.focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
 
-<script type="text/javascript">
-function valid() {
-    if (document.chngpwd.password.value == "") {
-        alert("Current Password Filed is Empty !!");
-        document.chngpwd.password.focus();
-        return false;
-    } else if (document.chngpwd.newpassword.value == "") {
-        alert("New Password Filed is Empty !!");
-        document.chngpwd.newpassword.focus();
-        return false;
-    } else if (document.chngpwd.confirmpassword.value == "") {
-        alert("Confirm Password Filed is Empty !!");
-        document.chngpwd.confirmpassword.focus();
-        return false;
-    } else if (document.chngpwd.newpassword.value != document.chngpwd.confirmpassword.value) {
-        alert("Password and Confirm Password Field do not match  !!");
-        document.chngpwd.confirmpassword.focus();
-        return false;
-    }
-    return true;
-}
-</script>
+<body class="bg-transparent">
+<?php include('includes/topheader.php'); ?>
 
-<!-- ========== Left Sidebar Start ========== -->
-<?php include('includes/leftsidebar.php');?>
-<!-- Left Sidebar End -->
-
-<div class="content-page">
-    <!-- Start content -->
-    <div class="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="page-title-box">
-                        <h4 class="page-title">Change Password</h4>
-                        <ol class="breadcrumb p-0 m-0">
-                            <li>
-                                <a href="#">Admin</a>
-                            </li>
-
-                            <li class="active">
-                                Change Password
-                            </li>
-                        </ol>
-                        <div class="clearfix"></div>
+<section>
+    <?php include('includes/leftsidebar.php'); ?>
+    <div class="container-alt">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="wrapper-page">
+                    <div class="m-t-40 account-pages">
+                        <div class="text-center account-logo-box">
+                            <h2 class="text-uppercase">
+                                <a href="index.php" class="text-success">
+                                    <span><img src="assets/images/logo.png" alt="" height="56"></span>
+                                </a>
+                            </h2>
+                        </div>
+                        <div class="account-content">
+                            <form class="form-horizontal" method="post" name="changepassword" onsubmit="return checkpass();">
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <input class="form-control" type="text" required="" name="username" placeholder="Username" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <input type="password" class="form-control" id="userpassword" name="confirmpassword" placeholder="Confirm Password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <input type="password" class="form-control" id="userpassword" name="newpassword" placeholder="New Password">
+                                    </div>
+                                </div>
+                                <div class="form-group account-btn text-center m-t-10">
+                                    <div class="col-xs-12">
+                                        <button class="btn w-md btn-bordered btn-danger waves-effect waves-light" type="submit" name="submit">Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- end row -->
-
-
-            <div class="card-box">
-                <h4 class="m-t-0 header-title"><b>Change Password </b></h4>
-                <hr />
-
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <!---Success Message--->
-                        <?php if($msg){ ?>
-                        <div class="alert alert-success" role="alert">
-                            <strong>Well done!</strong> <?php echo htmlentities($msg);?>
-                        </div>
-                        <?php } ?>
-
-                        <!---Error Message--->
-                        <?php if($error){ ?>
-                        <div class="alert alert-danger" role="alert">
-                            <strong>Oh snap!</strong> <?php echo htmlentities($error);?>
-                        </div>
-                        <?php } ?>
-
-                    </div>
-                </div>
-
-                <form class="row" name="chngpwd" method="post" onSubmit="return valid();">
-                    <div class="form-group  col-md-6">
-                        <label class="control-label">Current Password</label>
-                        <input type="text" class="form-control" value="" name="password" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="control-label">New Password</label>
-                        <input type="text" class="form-control" value="" name="newpassword" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="control-label">Confirm Password</label>
-                        <input type="text" class="form-control" value="" name="confirmpassword" required>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <button type="submit" class="btn btn-custom waves-effect waves-light btn-md"
-                            name="submit">Submit</button>
-                    </div>
-                </form>
             </div>
         </div>
-    </div><!-- end row -->
-</div> <!-- container -->
+    </div>
+</section>
 
+<script>
+    var resizefunc = [];
+</script>
+<?php include('includes/footer.php'); ?>
 
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/detect.js"></script>
+<script src="assets/js/fastclick.js"></script>
+<script src="assets/js/jquery.blockUI.js"></script>
+<script src="assets/js/waves.js"></script>
+<script src="assets/js/jquery.slimscroll.js"></script>
+<script src="assets/js/jquery.scrollTo.min.js"></script>
 
-<?php include('includes/footer.php');?>
+<script src="assets/js/jquery.core.js"></script>
+<script src="assets/js/jquery.app.js"></script>
 
-
-
+</body>
+</html>
 <?php } ?>

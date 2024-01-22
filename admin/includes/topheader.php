@@ -109,7 +109,7 @@ if (empty($user_photo)) {
 
                         <li class="dropdown user-box">
                             <a href="" class="dropdown-toggle waves-effect user-link" data-toggle="dropdown" aria-expanded="true">
-                                <img src="<?php echo $user_photo ?>" class="img-circle user-img">
+                                <img src="assets/images/170.jpg" alt="مابش لك" class="img-circle user-img">
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
@@ -127,7 +127,7 @@ if (empty($user_photo)) {
                                     if ($stmt->rowCount()) {
                                     ?>
 
-                                        <a href="editingProfile.php?uname=<?php echo htmlentities($row['AdminUserName']); ?>" class="ti-settings m-r-5">Edit Profile<i></i></a>
+                                        <a href="editingProfile.php<?php echo htmlentities($row['AdminUserName']); ?>" class="ti-settings m-r-5">Edit Profile<i></i></a>
                                     <?php } ?>
                                 </li>
 
