@@ -12,7 +12,23 @@ if (strlen($_SESSION['login']) == 0) {
       $email = $_POST['emailid'];
       $password = md5($_POST['pwd']);
       $usertype = '0';
-      $photo=$_POST['userigme'];
+      $imgfile=$_FILES["userigme"];
+      
+      // get the image extension
+      $extension = substr($imgfile,strlen($imgfile)-4,strlen($imgfile));
+      // allowed extensions
+      $allowed_extensions = array("jpg","jpeg","png","gif");
+      // Validation for allowed extensions .in_array() function searches an array for a specific value.
+      if(!in_array($extension,$allowed_extensions))
+      {
+      echo "<script>alert('Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
+      }
+      else
+      {
+      //rename the image file
+      $imgnewfile=md5($imgfile).$extension;
+      // Code for move image into directory
+      move_uploaded_file($_FILES["userigme"]["tmp_name"],"login/profilephoto".$imgnewfile);
       $stmt = $con->prepare("insert into tbladmin(AdminUserName,AdminEmailId,AdminPassword,userType,profile_imge ) values('$username','$email','$password','$usertype','$photo')");
       $stmt->execute();
       if ($stmt) {
@@ -21,7 +37,7 @@ if (strlen($_SESSION['login']) == 0) {
       } else {
          echo "<script>alert('Something went wrong. Please try again.');</script>";
       }
-   }
+   }}
 
 ?>
 

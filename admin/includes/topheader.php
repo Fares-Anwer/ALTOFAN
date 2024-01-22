@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+session_start();
+include('includes/config.php');
+error_reporting(0);?>
 <head>
     <title>ALTOFAN</title>
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
@@ -41,6 +44,19 @@
     }
     </script>
 </head>
+<?php
+                       $user_name= $_SESSION['login'];
+                        $stmt = $con->prepare("SELECT profile_imge FROM `tbladmin` WHERE AdminUserName=:user_name");
+                        $stmt->bindParam(':user_name', $user_name);
+                      $stmt->execute();
+                      $cout= $stmt->rowCount();
+                      $user_photo = $stmt->fetchColumn();
+                      if (empty($user_photo)) {
+                        // Set default/placeholder image path
+                        $user_photo = 'assets/images/avatar-1.jpg';
+                    }
+                        
+                        ?>
 
 <body class="fixed-left">
     <!-- Begin page -->
@@ -86,19 +102,19 @@
                     </div>
                     <!-- Right(Notification) -->
                     <ul class="nav navbar-nav navbar-right">
-
+                    
 
                         <li class="dropdown user-box">
                             <a href="" class="dropdown-toggle waves-effect user-link" data-toggle="dropdown"
                                 aria-expanded="true">
-                                <img src="assets/images/users/170.jpg" alt="user-img" class="img-circle user-img">
+                                <img src="../Login/profilephoto/<?php echo $user_photo ?>"  class="img-circle user-img">
                             </a>
 
                             <ul
                                 class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
                                 <li>
 
-                                    <h5>Hi, <?php echo $_SESSION['login']; ?> </h5>
+                                    <h5>Hi, <?php echo $user_name; ?> </h5>
                                 </li>
 
                                 <li><a href="change-password.php"><i class="ti-settings m-r-5"></i> Change Password</a>
